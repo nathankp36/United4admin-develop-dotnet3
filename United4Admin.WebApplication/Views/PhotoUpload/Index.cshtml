@@ -1,0 +1,102 @@
+﻿@using System.Security.Principal
+@model IEnumerable<United4Admin.WebApplication.ViewModels.SignUpVM>
+
+@{
+    bool EditSignUps = User.HasClaim(claim => claim.Type == "EditDeleteSupporterData" && claim.Value == "True");
+    bool CanDownLoadFiles = User.HasClaim(claim => claim.Type == "Download" && claim.Value == "True");
+}
+
+
+<h4>Chosen Photo Upload</h4>
+
+@if (ViewBag.DownLoadError != null)
+{
+    <p class="text-danger">@ViewBag.DownLoadError</p>
+}
+
+@if (ViewBag.Notification != null)
+{
+    <span id="Notification" class="text-success pull-right">
+        @ViewBag.Notification
+        <br />
+    </span>
+}
+<script>
+    $("#Notification").fadeOut(6000);
+</script>
+<br />
+<form method="post" id="myForm" asp-action="Create" enctype="multipart/form-data">
+    <div class="form-horizontal">
+        <input id="signUpId" name="signUpId" type="hidden">
+        <input id="signUpFileName" name="signUpFileName" type="hidden">
+        <table class="table">
+            <caption hidden="hidden">Below are all of the chosen registrations where a supporter has not upload a photo.</caption>
+            <tr>
+                <th scope="col">
+                    <label>Registration ID</label>
+                </th>
+                <th scope="col">
+                    <label>Supporter Name</label>
+                </th>
+                <th scope="col">
+                    <label>Registration Event</label>
+                </th>
+                <th scope="col">
+                    <label>Image Upload</label>
+                </th>
+                <th scope="col">
+                </th>
+                <th scope="col">
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.chosenSignUpId
+                    </td>
+                    <td>
+                        @item.FirstName  @item.LastName
+                    </td>
+                    <td>
+                        @item.RegistrationEventName
+                    </td>
+                    <td>
+                        <input type="file" id="fileUploadName@(item.chosenSignUpId)" name="fileUploadName" class="form-control"
+                               accept=".jpg,application/jpg,text/jpg" onchange="enableBtn('@item.chosenSignUpId')">
+                    </td>
+                    <td>
+                        <input id="btnUpload@(item.chosenSignUpId)" name="btnUpload" type="button" value="Save  " class="btn btn-primary upload" onclick="save('@item.chosenSignUpId')" disabled />
+                    </td>
+                    <td>
+                        <input id="btnCancel@(item.chosenSignUpId)" name="btnUpload" type="button" value="Cancel" class="btn btn-primary upload" onclick="cancel('@item.chosenSignUpId')" disabled />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>
+<script>
+    //function to disable buttons
+    function enableBtn(id) {
+        $("#btnUpload" + id).prop('disabled', false);
+        $("#btnCancel" + id).prop('disabled', false);
+    }
+
+    //function to send datas to save
+    function save(id) {
+        $("#btnUpload" + id).prop('disabled', true);
+        var fileNameUpload = $("#fileUploadName").val();
+        $("#signUpId").val(id);
+        $("#signUpFileName").val(fileNameUpload);
+        $("#myForm").submit();
+    }
+
+    //function to clease file name and enable buttons
+    function cancel(id) {
+        $("#fileUploadName" + id).val('');
+        $("#btnUpload" + id).prop('disabled', true);
+        $("#btnCancel" + id).prop('disabled', true);
+    }
+</script>

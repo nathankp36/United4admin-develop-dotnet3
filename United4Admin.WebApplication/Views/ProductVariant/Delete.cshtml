@@ -1,0 +1,48 @@
+﻿@model United4Admin.WebApplication.ViewModels.ProductVariantVM
+
+<div>
+    <h4>Delete Product Variant</h4>
+    <div class="alert alert-danger">Are you sure you want to remove this product variant?</div>
+    <dl class="dl-horizontal">
+        <dt>
+            <label asp-for="crmProductVariantName"></label>
+        </dt>
+        <dd>
+            @Model.crmProductVariantName
+        </dd>
+        <dt>
+            <label asp-for="ddlProductTypeCodeDisplay"></label>
+        </dt>
+        <dd>
+            @Model.ddlProductTypeCodeDisplay
+        </dd>
+        <dt>
+            <label asp-for="crmIncidentType"></label>
+        </dt>
+        <dd>
+            @Model.crmIncidentType
+        </dd>
+        <dt>
+            <label asp-for="crmPurposeCode"></label>
+        </dt>
+        <dd>
+            @Model.crmPurposeCode
+        </dd>
+        <dt>
+            <label asp-for="crmPledgeType"></label>
+        </dt>
+
+        <dd>
+            @Model.crmPledgeType
+        </dd>
+    </dl>
+
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="control-label col-md-2"></div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-controller="NavisionMapping" asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

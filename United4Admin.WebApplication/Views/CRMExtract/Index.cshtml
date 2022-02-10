@@ -1,0 +1,136 @@
+﻿@model United4Admin.WebApplication.ViewModels.CRMExtractParameterModelVM
+@{ }
+
+<form method="post" asp-action="ExportCRMExtractData" id="exportCRM">
+
+    <div class="form-horizontal">
+        <h4>
+            CRM CSV Export
+        </h4>
+        <hr />
+        &nbsp;
+        <div asp-validation-summary="All" class="text-danger" id="allValid"></div>
+        <div class="form-group">
+            <label asp-for="ExtractType" class="control-label col-md-3 exportlbl">Choose Your Export Range</label>
+            <div class="col-md-5">
+                <input asp-for="ExtractType" type="radio" value="newtransaction" id="allNewType" checked />
+                <label>All New Transaction</label> &nbsp;&nbsp;
+                <input asp-for="ExtractType" type="radio" value="date" id="dateType" />
+                <label>Date Range</label>
+            </div>
+            <span asp-validation-for="ExtractType" class="text-danger"></span>
+        </div>
+        <div id="Daetdiv" hidden>
+            <div class="form-group">
+                <div class="form-group">
+                    <label asp-for="StartDate" class="control-label col-md-3"></label>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <input asp-for="StartDate" class="datePicker form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <span asp-validation-for="StartDate" class="text-danger" id="validStart"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EndDate" class="control-label col-md-3"></label>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <input asp-for="EndDate" class="datePicker form-control">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                        <span asp-validation-for="EndDate" class="text-danger" id="validEnd"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <div class="control-label col-md-3"></div>
+                <input id="exportButton" type="button" value="Export" class="btn btn-primary" onclick="exportData();" />
+            </div>
+            <div>
+                <div id="download_status" hidden="hidden" class="control-label col-md-6">The file is getting downloaded!</div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $('input[name="ExtractType"]').change(
+            function () {
+             UpdateWVEventsDivs($(this).val().toString());
+         });
+        //update the divs according to the model
+        UpdateWVEventsDivs('@(Model.ExtractType!=null ? Model.ExtractType.ToString():"")');
+    });
+
+    function UpdateWVEventsDivs(typeOfEvent) {
+        $('#download_status').attr('hidden', 'hidden')
+        $('#exportButton').removeAttr('disabled')
+        if (typeOfEvent == "date") {
+            $("#Daetdiv").show();
+            $('#EndDate').val('');
+            $('#StartDate').val('');
+            $('#validStart').text("");
+            $('#validEnd').text("");
+        }
+         else {
+            $("#Daetdiv").hide();
+            $('#EndDate').val('');
+            $('#StartDate').val('');
+            $('#validStart').text("");
+            $('#validEnd').text("");
+        }
+    }
+
+    //function to date valid and form submit
+    function exportData() {
+        if ($("#dateType").is(":checked")) {
+            var startDate = $("#StartDate").val();//Year, Month, Date
+            var endDate = $("#EndDate").val();//Year, Month, Date
+
+            $("#validStart").text("");
+            $("#validEnd").text("");
+
+            if ($("#StartDate").val() == "") {
+                $("#validStart").text("Please Select Start Date");
+                if ($("#EndDate").val() == "") {
+                    $("#validEnd").text("Please Select End Date");
+                }
+                return false;
+            }
+
+            if ($("#EndDate").val() == "") {
+                $("#validEnd").text("Please Select End Date");
+                if ($("#StartDate").val() == "") {
+                    $("#validStart").text("Please Select Start Date");
+                }
+                return false;
+            }
+
+            var d1 = startDate.split("/");
+            var d2 = endDate.split("/");
+
+            d1 = d1[2].concat(d1[1], d1[0]);
+            d2 = d2[2].concat(d2[1], d2[0]);
+
+            if (parseInt(d1) > parseInt(d2)) {
+                    $("#validStart").text("Start Date Should Not Greater Than End Date");
+                return false;
+            }
+        }
+        document.getElementById('download_status').removeAttribute("hidden");
+        document.getElementById("exportButton").disabled = true;
+        $("#exportCRM").submit();
+    }
+</script>
+<style>
+    .exportlbl {
+        padding-top: 0px !important;
+    }
+</style>

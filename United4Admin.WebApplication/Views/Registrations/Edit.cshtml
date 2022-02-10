@@ -1,0 +1,287 @@
+﻿@model United4Admin.WebApplication.ViewModels.SignUpVM
+
+@{
+
+}
+
+<form method="post">
+
+    <div class="form-horizontal">
+        <h4>
+            Registration for @Model.FirstName  @Model.LastName
+        </h4>
+
+        <div class="form-group pull-right">
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+        <hr />
+
+        &nbsp;
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="chosenSignUpId" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+                <input asp-for="chosenSignUpId" class="form-control" disabled="disabled" />
+                <input asp-for="chosenSignUpId" type="hidden" />
+                <span asp-validation-for="chosenSignUpId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SignUpDate" class="control-label col-md-2"></label>
+			<div class="col-md-2">
+				<div class="input-group">
+					<input asp-for="SignUpDate" class="datePicker form-control" />
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+					<span asp-validation-for="SignUpDate" class="text-danger"></span>
+				</div>
+			</div>
+        </div>
+        <a asp-action="ShowPhoto" asp-route-id="@Model.chosenSignUpId">View Image</a>
+        <fieldset>
+            <legend>Sponsor Details</legend>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="EmailAddress" class="form-control" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label col-md-2"></label>
+                <div class="col-md-2">
+                    @*<select asp-for="TitleId" class="form-control" asp-items="@(new SelectList(Model.Titles,"Id","TitleName"))">
+                        <option>Please Select...</option>
+                    </select>
+                    <span asp-validation-for="TitleId" class="text-danger"></span>*@
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="BuildingNumberName" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="BuildingNumberName" class="form-control" />
+                    <span asp-validation-for="BuildingNumberName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StreetName" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="StreetName" class="form-control" />
+                    <span asp-validation-for="StreetName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AddressLine2" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="AddressLine2" class="form-control" />
+                    <span asp-validation-for="AddressLine2" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AddressLine3" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="AddressLine3" class="form-control" />
+                    <span asp-validation-for="AddressLine3" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TownCity" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="TownCity" class="form-control" />
+                    <span asp-validation-for="TownCity" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Postcode" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="Postcode" class="form-control" />
+                    <span asp-validation-for="Postcode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="Country" class="form-control" />
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Upload Photo</legend>
+            <div class="form-group">
+                <label asp-for="DataConsent" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="DataConsent" class="form-control" />
+                    <span asp-validation-for="DataConsent" class="text-danger"></span>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Billing Details</legend>
+            <div class="form-group">
+                <label asp-for="AccountHoldersName" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="AccountHoldersName" class="form-control" />
+                    <span asp-validation-for="AccountHoldersName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorrectedBankSortCode" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="CorrectedBankSortCode" class="form-control" />
+                    <span asp-validation-for="CorrectedBankSortCode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorrectedBankAccountNumber" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="CorrectedBankAccountNumber" class="form-control" />
+                    <span asp-validation-for="CorrectedBankAccountNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DirectDebitStatusInfo" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="DirectDebitStatusInfo" class="form-control" disabled="disabled" />
+                    <input asp-for="DirectDebitStatusInfo" type="hidden" />
+                    <span asp-validation-for="DirectDebitStatusInfo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Iban" class="control-label col-md-2"></label>
+                <div class="col-md-4">
+                    <input asp-for="Iban" class="form-control" disabled="disabled" />
+                    <input asp-for="Iban" type="hidden" />
+                    <span asp-validation-for="Iban" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxConsent" class="control-label col-md-2"></label>
+                <div class="col-md-2">
+                    <input asp-for="TaxConsent" class="form-control" />
+                    <span asp-validation-for="TaxConsent" class="text-danger"></span>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Marketing Consent</legend>
+            <p>
+                How would you like to hear from us?
+            </p>
+            <div class="form-group">
+                <label asp-for="Post" class="control-label col-md-2"></label>
+                <div class="col-md-2">
+                    <input asp-for="Post" class="form-control" />
+                    <span asp-validation-for="Post" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label col-md-2"></label>
+                <div class="col-md-2">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label col-md-2"></label>
+                <div class="col-md-2">
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="SMS" class="control-label col-md-2"></label>
+                <div class="col-md-2">
+                    <input asp-for="SMS" class="form-control" />
+                    <span asp-validation-for="SMS" class="text-danger"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Events Details</legend>
+
+            <div class="form-group">
+                <label asp-for="ChosenStatusId" class="control-label col-md-2"></label>
+                <div class="col-md-2">
+                    <select asp-for="ChosenStatusId" class="form-control" asp-items="@(new SelectList(Model.Statuses,"ChosenStatusId","Description"))">
+                        <option>Please Select...</option>
+                    </select>
+                    <span asp-validation-for="ChosenStatusId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="SignUpEventId" class="control-label col-md-2"></label>
+                <div class="col-md-6">
+                    <select asp-for="SignUpEventId" class="form-control" asp-items="@(new SelectList(Model.SignUpVMEvents,"SignUpEventId","DisplayName"))">
+                        <option>Please Select...</option>
+                    </select>
+                    <span asp-validation-for="SignUpEventId" class="text-danger"></span>
+                </div>               
+            </div>
+            <div class="form-group">
+                <label asp-for="ChoosingPartyId" class="control-label col-md-2"></label>
+                <div class="col-md-6">
+                    <select asp-for="ChoosingPartyId" class="form-control" asp-items="@(new SelectList(Model.ChoosingParties,"ChoosingPartyId","DisplayName"))">
+                        <option value="0">Please Select...</option>
+                    </select>
+                    <span asp-validation-for="ChoosingPartyId" class="text-danger"></span>
+                </div>              
+            </div>
+            <div class="form-group">
+                <label asp-for="RevealEventId" class="control-label col-md-2"></label>
+                <div class="col-md-6">
+                    <select asp-for="RevealEventId" class="form-control" asp-items="@(new SelectList(Model.RevealEvents,"RevealEventId","DisplayName"))">
+                        <option value="0">Please Select...</option>
+                    </select>
+                    <span asp-validation-for="RevealEventId" class="text-danger"></span>
+                </div>               
+            </div>
+        </fieldset>
+
+    </div>
+</form>
+
+
+<div>
+    <div class="control-label col-md-2"></div>
+    <a asp-action="Delete" asp-route-id=@Model.chosenSignUpId class = "btn btn-danger">Delete</a>
+</div>

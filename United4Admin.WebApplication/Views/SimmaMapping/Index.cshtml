@@ -1,0 +1,118 @@
+﻿@model United4Admin.WebApplication.ViewModels.SimmaMappingVM
+@{
+
+}
+@if (ViewBag.Notification != null)
+{
+    <span id="Notification" class="text-success pull-right">
+        @ViewBag.Notification
+    </span>
+}
+<script>
+    $("#Notification").fadeOut(6000);
+</script>
+<!--Fallback Values-->
+<h2>
+    Fallback Values
+</h2>
+@*<p>
+    <a asp-controller="FallbackValues" asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <caption hidden="hidden">FallbackValues</caption>
+    <tr>
+        <th scope="col">
+            <label asp-for="@Model.FallbackValuesVM.FirstOrDefault().Field"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="@Model.FallbackValuesVM.FirstOrDefault().Value"></label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model.FallbackValuesVM)
+    {
+        <tr>
+            <td>
+                <a asp-controller="FallbackValues" asp-action="Edit" asp-route-id="@item.Field">@item.Field</a>
+            </td>
+            <td>
+                @item.Value
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<!--Campaign code - Motivation-->
+<h2>
+    Campaign code - Motivation
+</h2>
+<p>
+    <a asp-controller="Motivation" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <caption hidden="hidden">Campaign code - Motivation</caption>
+    <tr>
+        <th scope="col">
+            <label asp-for="@Model.MotivationVM.FirstOrDefault().CampaignCode"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="@Model.MotivationVM.FirstOrDefault().MotivatinId"></label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model.MotivationVM)
+    {
+        <tr>
+            <td>
+                <a asp-controller="Motivation" asp-action="Edit" asp-route-id="@item.CampaignCode">@item.CampaignCode</a>
+            </td>
+            <td>
+                @item.MotivatinId
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<!--Pledge and Designation-->
+<h2>
+    Pledge and Designation
+</h2>
+<p>
+    <a asp-controller="PledgeDesignation" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <caption hidden="hidden">Payment Method</caption>
+    <tr>
+        <th scope="col">
+            <label asp-for="@Model.PledgeDesignationVM.FirstOrDefault().WvFormDescription"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="@Model.PledgeDesignationVM.FirstOrDefault().WvProductVariant"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="@Model.PledgeDesignationVM.FirstOrDefault().CrmPledgeId"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="@Model.PledgeDesignationVM.FirstOrDefault().CrmDesignationId"></label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model.PledgeDesignationVM)
+    {
+        <tr>
+            <td>
+                <a asp-controller="PledgeDesignation" asp-action="Edit" asp-route-id="@item.WvProductVariant">@item.WvFormDescription</a>
+            </td>
+            <td>
+                @item.WvProductVariant
+            </td>
+            <td>
+                @item.CrmPledgeId
+            </td>
+            <td>
+                @item.CrmDesignationId
+            </td>
+        </tr>
+    }
+</table>
+

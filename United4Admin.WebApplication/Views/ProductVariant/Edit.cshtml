@@ -1,0 +1,91 @@
+﻿@model United4Admin.WebApplication.ViewModels.ProductVariantVM
+
+@{
+    String action = ViewBag.Action;
+}
+
+<form method="post">
+
+    <div class="form-horizontal">
+        <h4>
+            @action Product Variant
+        </h4>
+
+        <div class="form-group pull-right">
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-controller="NavisionMapping" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+        <hr />
+
+        &nbsp;
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input asp-for="Create" type="hidden" />
+        <div class="form-group">
+            <label asp-for="ddlProductTypeCodeDisplay" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    @if (action == "Edit")
+                    {
+                        <input asp-for="ddlProductTypeCodeDisplay" class="form-control" disabled />
+                    }
+                    @if (action == "Create")
+                    {
+                        <input asp-for="ddlProductTypeCodeDisplay" class="form-control" />
+                    }
+                    <input asp-for="ddlProductTypeCodeDisplay" type="hidden" />
+                    <span asp-validation-for="ddlProductTypeCodeDisplay" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="crmProductVariantName" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input asp-for="crmProductVariantName" class="form-control" />
+                    <span asp-validation-for="crmProductVariantName" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="crmIncidentType" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <select asp-for="crmIncidentType" class="form-control" asp-items="@(new SelectList(Model.IncidentTypeList,"crmIncidentTypeName","crmIncidentTypeName"))">
+                        <option value="">Please Select...</option>
+                    </select>
+                    <span asp-validation-for="crmIncidentType" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="crmPurposeCode" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input asp-for="crmPurposeCode" class="form-control" />
+                    <span asp-validation-for="crmPurposeCode" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="crmPledgeType" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <select asp-for="crmPledgeType" class="form-control" asp-items="@(new SelectList(Model.PledgeTypeList,"crmPledgeTypeName","crmPledgeTypeName"))">
+                        <option value="">Please Select...</option>
+                    </select>
+                    <span asp-validation-for="crmPledgeType" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@if (action == "Edit")
+{
+    <div>
+        <div class="control-label col-md-2"></div>
+        <a asp-action="Delete" asp-route-id="@Model.ddlProductTypeCodeDisplay" class="btn btn-danger">Delete</a>
+    </div>
+}

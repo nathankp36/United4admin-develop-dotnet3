@@ -1,0 +1,20 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/United4Admin/DesignTimeBuild
+/United4Admin.AzureResourceGroup/bin/Debug/staging/United4Admin.AzureResourceGroup
+/United4Admin.AzureResourceGroup/obj/Debug
+/United4Admin.ReportGenerator/bin/Debug/netcoreapp3.1
+/United4Admin.ReportGenerator/obj/Debug/netcoreapp3.1
+/United4Admin.ReportGenerator/obj
+/United4Admin.UnitTests/bin/Debug/netcoreapp3.1
+/United4Admin.UnitTests/obj/Debug/netcoreapp3.1
+/United4Admin.UnitTests/obj
+/United4Admin.WebApplication/bin/Debug/netcoreapp3.1
+/United4Admin.WebApplication/obj/Debug/netcoreapp3.1
+/United4Admin.WebApplication/obj
+/.vs/United4Admin/v16/TestStore/0
+/United4Admin.WebApplication/bin/Release/netcoreapp3.1
+/United4Admin.WebApplication/Properties/PublishProfiles
+/United4Admin.ReportGenerator/bin/Release/netcoreapp3.1

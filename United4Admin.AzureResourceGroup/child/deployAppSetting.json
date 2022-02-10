@@ -1,0 +1,101 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"webSiteName": {
+			"type": "string"
+		},
+		"CRMExtractData:CRMType": {
+			"type": "string"
+		},
+		"CRMExtractData:HostedCountry": {
+			"type": "string"
+		},
+		"CRMExtractData:CRMQuarantineDisplay": {
+			"type": "bool"
+		},
+		"AzureAd:Instance": {
+			"type": "string"
+		},
+		"AzureAd:Domain": {
+			"type": "string"
+		},
+		"AzureAd:TenantId": {
+			"type": "string"
+		},
+		"AzureAd:ClientId": {
+			"type": "string"
+		},
+		"ApiConfig:ApiBaseUrl": {
+			"type": "string"
+		},
+		"ApiConfig:ApiToken": {
+			"type": "string"
+		},
+		"ApiConfig:ApiVersion": {
+			"type": "string"
+		},
+		"LogStorageDetails:StorageAccountName": {
+			"type": "string"
+		},
+		"LogStorageDetails:StorageAccountKey": {
+			"type": "string"
+		},
+		"LogStorageDetails:LogStorageContainer": {
+			"type": "string"
+		},
+		"CRMMapping:crmNavigationTitle": {
+			"type": "string"
+		},
+		"CRMMapping:crmDisplayNavigation": {
+			"type": "string"
+		},
+		"CRMMapping:crmMappingPath": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		
+	},
+	"resources": [
+		{
+			"apiVersion": "2015-08-01",
+			"name": "[parameters('webSiteName')]",
+			"type": "Microsoft.Web/sites",
+			"location": "[resourceGroup().location]",
+			"dependsOn": [],
+			"properties": {
+				
+			},
+			"resources": [
+				{
+					"name": "appsettings",
+					"type": "config",
+					"apiVersion": "2018-11-01",
+					"dependsOn": [
+						"[resourceId('Microsoft.Web/Sites/', parameters('webSiteName'))]"
+					],
+					"properties": {
+						"CRMExtractData:CRMType": "[parameters('CRMExtractData:CRMType')]",
+						"CRMExtractData:HostedCountry": "[parameters('CRMExtractData:HostedCountry')]",
+						"CRMExtractData:crmQuarantineDisplay": "[parameters('CRMExtractData:CRMQuarantineDisplay')]",
+						"CRMMapping:crmNavigationTitle": "[parameters('CRMMapping:crmNavigationTitle')]",
+						"CRMMapping:crmDisplayNavigation": "[parameters('CRMMapping:crmDisplayNavigation')]",
+						"CRMMapping:crmMappingPath": "[parameters('CRMMapping:crmMappingPath')]",
+						"AzureAd:Instance": "[parameters('AzureAd:Instance')]",
+						"AzureAd:Domain": "[parameters('AzureAd:Domain')]",
+						"AzureAd:TenantId": "[parameters('AzureAd:TenantId')]",
+						"AzureAd:ClientId": "[parameters('AzureAd:ClientId')]",
+						"ApiConfig:ApiBaseUrl": "[parameters('ApiConfig:ApiBaseUrl')]",
+						"ApiConfig:ApiToken": "[parameters('ApiConfig:ApiToken')]",
+						"ApiConfig:ApiVersion": "[parameters('ApiConfig:ApiVersion')]",
+						"LogStorageDetails:StorageAccountName": "[parameters('LogStorageDetails:StorageAccountName')]",
+						"LogStorageDetails:StorageAccountKey": "[parameters('LogStorageDetails:StorageAccountKey')]",
+						"LogStorageDetails:LogStorageContainer": "[parameters('LogStorageDetails:LogStorageContainer')]"
+						
+					}
+				}
+			]
+		}
+	]
+}

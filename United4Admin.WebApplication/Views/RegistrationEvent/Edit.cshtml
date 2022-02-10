@@ -1,0 +1,206 @@
+﻿@model United4Admin.WebApplication.ViewModels.SignUpEventVM
+
+@{
+    String action = ViewBag.Action;
+}
+
+<form method="post">
+
+    <div class="form-horizontal">
+        <h4>
+            @action Registration Event
+        </h4>
+
+        <div class="form-group pull-right">
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+        <hr />
+
+        &nbsp;
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <input asp-for="SignUpEventId" type="hidden" />
+        <input asp-for="Create" type="hidden" />
+
+        <div class="form-group">
+            <label asp-for="EventName" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <input asp-for="EventName" class="form-control" />
+                <span asp-validation-for="EventName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Location" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="EventDate" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+				<div class="input-group">
+					<input asp-for="EventDate" class="datePicker form-control" />
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+                <span asp-validation-for="EventDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PublishDate" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+				<div class="input-group">
+					<input asp-for="PublishDate" class="datePicker form-control" />
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+                <span asp-validation-for="PublishDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ClosedDate" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+				<div class="input-group">
+					<input asp-for="ClosedDate" class="datePicker form-control" />
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+				</div>
+                <span asp-validation-for="ClosedDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TypeOfRegistration" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+                <select asp-for="TypeOfRegistration" class="form-control" asp-items="@(new SelectList( Model.TypeOfRegistrationList))">
+                    <option value="">Please Select...</option>
+                </select>
+                <span asp-validation-for="TypeOfRegistration" class="text-danger"></span>
+            </div>
+        </div>
+        <div id="WVPhotoBoothdiv">
+            <div class="form-group">
+
+                <label asp-for="WVPhotoBooth" class="control-label col-md-2"></label>
+                <div class="col-sm-5">
+                    <input asp-for="WVPhotoBooth" type="radio" value="True" />
+                    <label>Yes</label><br />
+                    <input asp-for="WVPhotoBooth" type="radio" value="False" />
+                    <label>No</label>
+                </div>
+                <span asp-validation-for="WVPhotoBooth" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ShortURL" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+                <input asp-for="ShortURL" class="form-control" />
+                <span asp-validation-for="ShortURL" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CampaignCode" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <input asp-for="CampaignCode" class="form-control" />
+                <span asp-validation-for="CampaignCode" class="text-danger"></span>
+            </div>
+        </div>
+        @*<div class="form-group">
+            <label asp-for="ThankYouText" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <textarea asp-for="ThankYouText" class="form-control"></textarea>
+                <span asp-validation-for="ThankYouText" class="text-danger"></span>
+                <p style="font-size:small">This text will appear on the page the user is taken to when they have submitted their form.</p>
+            </div>
+        </div>*@
+        <div id="OtherEventsdiv">
+            <div class="form-group">
+                <label asp-for="SpecificChoosingEvent" class="control-label col-md-2"></label>
+                <div class="col-sm-5">
+                    <input asp-for="SpecificChoosingEvent" type="radio" value="True" />
+                    <label>Yes</label><br />
+                    <input asp-for="SpecificChoosingEvent" type="radio" value="False" />
+                    <label>No</label>
+                </div>
+                <span asp-validation-for="SpecificChoosingEvent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChoosingPartyId" class="control-label col-md-2"></label>
+                <div class="col-md-6">
+                    <select asp-for="ChoosingPartyId" class="form-control" asp-items="@(new SelectList(Model.ChoosingParties,"ChoosingPartyId","DisplayName"))">
+                        <option value="0">Please Select...</option>
+                    </select>
+                    <span asp-validation-for="ChoosingPartyId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="RevealEventId" class="control-label col-md-2"></label>
+                <div class="col-md-6">
+                    <select asp-for="RevealEventId" class="form-control" asp-items="@(new SelectList(Model.RevealEvents,"RevealEventId","DisplayName"))">
+                        <option value="0">Please Select...</option>
+                    </select>
+                    <span asp-validation-for="RevealEventId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="WorkflowStatusId" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+                <select asp-for="WorkflowStatusId" class="form-control" asp-items="@(new SelectList(Model.WorkFlowStatuses,"WorkflowStatusId","WorkflowStatusLookupName"))">
+                    <option value="">Please Select...</option>
+                </select>
+                <span asp-validation-for="WorkflowStatusId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="NotesComments" class="control-label col-md-2"></label>
+            <div class="col-md-6">
+                <textarea asp-for="NotesComments" class="form-control"></textarea>
+                <span asp-validation-for="NotesComments" class="text-danger"></span>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@if (action == "Edit")
+{
+    <div>
+        <div class="control-label col-md-2"></div>
+        <a asp-action="Delete" asp-route-Id="@Model.SignUpEventId" class="btn btn-danger">Delete</a>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        $('#TypeOfRegistration').change(
+            function () {
+             UpdateWVEventsDivs($(this).val().toString());
+            });
+        //update the divs according to the model
+        UpdateWVEventsDivs('@(Model.TypeOfRegistration!=null ? Model.TypeOfRegistration.ToString():"")');
+    });
+
+    function UpdateWVEventsDivs(typeOfEvent) {
+        $("#WVPhotoBoothdiv").hide();
+        $("#OtherEventsdiv").hide();
+        if (typeOfEvent == "WV Chosen Event") {
+
+            $("#WVPhotoBoothdiv").show();
+            $("#OtherEventsdiv").show();
+        }
+        else {
+            //remove values that may have been set
+           $("input:radio[name=WVPhotoBooth]").val(['False'])
+            $("input:radio[name=SpecificChoosingEvent]").val(['False']);
+            $("#ChoosingPartyId").val('');
+            $("#RevealEventId").val('');
+        }
+    }
+</script>

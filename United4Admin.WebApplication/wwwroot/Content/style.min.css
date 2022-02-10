@@ -1,0 +1,316 @@
+﻿.border-bottom {
+    border-bottom: 1px solid #dee2e6 !important
+}
+
+.font-weight-bold {
+    font-weight: 700 !important
+}
+
+.text-uppercase {
+    text-transform: uppercase !important
+}
+
+.text-white-50 {
+    color: rgba(255,255,255,.5) !important
+}
+
+.text-danger {
+    color: #dc3545 !important
+}
+
+.invalid-feedback {
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%
+}
+
+.custom-control {
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5rem
+}
+
+.custom-control-input {
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    width: 1rem;
+    height: 1.25rem;
+    opacity: 0
+}
+
+.custom-control-label {
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top
+}
+
+    .custom-control-label::before {
+        position: absolute;
+        top: 0.25rem;
+        left: -1.5rem;
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        pointer-events: none;
+        content: "";
+        background-color: #fff;
+        border: #adb5bd solid 1px
+    }
+
+.custom-checkbox .custom-control-label::before {
+    border-radius: 0.25rem
+}
+
+.custom-control-label::after {
+    position: absolute;
+    top: 0.25rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    background: no-repeat 50%/50% 50%
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #007bff;
+    background-color: #007bff
+}
+
+.custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25)
+}
+
+.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+    border-color: #80bdff
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e")
+}
+
+html {
+    font-size: 100%
+}
+
+body {
+    background: #e9e8e8;
+    font: 16px/24px Arial,Helvetica,sans-serif;
+    color: #231f20;
+    -ms-overflow-style: scrollbar
+}
+
+a {
+    color: currentColor;
+    text-decoration: underline;
+    text-decoration-skip: ink;
+    -webkit-text-decoration-skip: ink
+}
+
+    a:active, a:focus, a:hover {
+        color: #777
+    }
+
+.btn {
+    border-radius: 0;
+    padding: 0.666667em 1.333333em;
+    font-size: 1.125em;
+    line-height: 1.5;
+    text-shadow: 0 1px 0 rgba(255,255,255,.4);
+    text-transform: uppercase;
+    white-space: normal
+}
+
+.btn-default {
+    border: 1px solid #ff6b00;
+    color: #fff;
+    background: #ff6b00;
+    box-shadow: 0 1px 1px rgba(0,0,0,.16),0 1px 0 #ff8933 inset !important
+}
+
+.letterspacing-120 {
+    letter-spacing: 0.15625em
+}
+
+.container-opaque {
+    background-color: #666;
+    background-color: rgba(102,102,102, 0.75)
+}
+
+.container-max-w {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 26em
+}
+
+.theme-alt-1 .h1 {
+    margin-bottom: 30px
+}
+
+.theme-alt-1 .site-strapline.h3 {
+    line-height: 1.5
+}
+
+.theme-alt-1 legend[id*="form-label"] {
+    border: 0;
+    margin-bottom: 1em;
+    font-size: 36px;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #fff;
+    color: currentColor;
+    text-align: center
+}
+
+.theme-alt-1 fieldset.border-bottom {
+    margin-bottom: 15px;
+    border-bottom-color: #f5f5f5 !important;
+    padding-bottom: 11px
+}
+
+.theme-alt-1 label {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: #f5f5f5
+}
+
+.theme-alt-1 .form-control {
+    border-radius: 0
+}
+
+.theme-alt-1 .btn[type="submit"] {
+    margin-top: 2em
+}
+
+.theme-alt-1 .custom-control {
+    margin-top: 1em
+}
+
+.theme-alt-1 .custom-control-label::before {
+    top: 0;
+    background-color: transparent;
+    border: #ccc solid 1px
+}
+
+.theme-alt-1 .custom-checkbox .custom-control-label::before {
+    border-radius: 0
+}
+
+.theme-alt-1 .custom-control-input:checked ~ .custom-control-label::before {
+    border-color: #ff6b00;
+    background-color: #ff6b00
+}
+
+.theme-alt-1 .custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6)
+}
+
+.theme-alt-1 .custom-control-label::after {
+    top: 0
+}
+
+.theme-alt-1 .has-error .form-control {
+    border-width: 2px
+}
+
+.theme-alt-1 .invalid-feedback {
+    display: block;
+    margin-top: 0;
+    padding: 0 2px;
+    background-color: #A94442 !important;
+    color: #fff !important
+}
+
+.theme-alt-1 {
+    background-color: #ffffff !important;
+    color: #fff !important
+}
+
+    .theme-alt-1 .h1 .logo-chosen {
+        margin-right: -0.666667em
+    }
+
+    .theme-alt-1 footer[role="contentinfo"] .logo-main {
+        display: block;
+        margin-top: 1.5em
+    }
+
+    .theme-alt-1 .site-strapline {
+        margin-bottom: 7.5%
+    }
+
+    .theme-alt-1 .body-content {
+        padding-top: 7.5%;
+        padding-bottom: 7.5%;
+        position: relative;
+        z-index: 10
+    }
+
+    .theme-alt-1 .container-max-w form {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 3em 1.5em;
+        max-width: 20em
+    }
+
+    .theme-alt-1 .form-group .glyphicon {
+        font-size: 12px
+    }
+
+    .theme-alt-1 footer[role="contentinfo"] {
+        margin-top: 3em
+    }
+
+p, .p {
+    font-size: 13px;
+}
+
+li, .li {
+    font-size: 13px;
+    text-align: left;
+    margin-right: 10px
+}
+
+@media screen and (min-width: 1px) {
+    .theme-alt-1 {
+        background: url("../img/chosen-bg-02-sm-filter.jpg") top center no-repeat;
+        background-size: cover
+    }
+
+        .theme-alt-1 .form-group .glyphicon {
+            margin-right: 0.25em;
+            margin-left: -1.5em;
+            font-size: 12px
+        }
+
+    .sr-only-modern {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        border: 0
+    }
+}
+
+@media screen and (min-width: 30em) {
+    .theme-alt-1 .form-group .glyphicon {
+        margin-right: 0.666666666666667em;
+        margin-left: -2em
+    }
+
+    .theme-alt-1 .custom-control {
+        margin-left: -1.625em;
+        padding-left: 1.75em
+    }
+}
+
+h1.photoId {
+    font-size: 72px;
+}

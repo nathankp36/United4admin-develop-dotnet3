@@ -1,0 +1,29 @@
+﻿@model United4Admin.WebApplication.ViewModels.MotivationVM
+
+<div>
+    <h4>Delete Campaign Code</h4>
+    <div class="alert alert-danger">Are you sure you want to remove this Campaign Code?</div>
+    <dl class="dl-horizontal">
+        <dt>
+            <label asp-for="CampaignCode"></label>
+        </dt>
+        <dd>
+            @Model.CampaignCode
+        </dd>
+        <dt>
+            <label asp-for="MotivatinId"></label>
+        </dt>
+        <dd>
+            @Model.MotivatinId
+        </dd>
+    </dl>
+
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="control-label col-md-2"></div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-controller="SimmaMapping" asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

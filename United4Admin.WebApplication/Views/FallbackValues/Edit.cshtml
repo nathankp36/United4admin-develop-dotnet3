@@ -1,0 +1,63 @@
+﻿@model United4Admin.WebApplication.ViewModels.FallbackValuesVM
+
+@{
+    String action = ViewBag.Action;
+}
+
+<form method="post">
+
+    <div class="form-horizontal">
+        <h4>
+            @action Fallback Values
+        </h4>
+
+        <div class="form-group pull-right">
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-controller="SimmaMapping" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+        <hr />
+
+        &nbsp;
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @*<input asp-for="Update" type="hidden" />*@
+        <div class="form-group">
+            <label asp-for="Field" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    @if (action == "Edit")
+                    {
+                        <input asp-for="Field" class="form-control" disabled />
+                    }
+                    @if (action == "Create")
+                    {
+                        <input asp-for="Field" class="form-control" />
+                    }
+                    <input asp-for="Field" type="hidden" />
+                    <span asp-validation-for="Field" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Value" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input asp-for="Value" class="form-control" />
+                    <span asp-validation-for="Value" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</form>
+
+@if (action == "Edit")
+{
+    <div>
+        <div class="control-label col-md-2"></div>
+        <a asp-action="Delete" asp-route-id="@Model.Field" class="btn btn-danger">Delete</a>
+    </div>
+}

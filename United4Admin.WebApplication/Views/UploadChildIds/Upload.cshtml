@@ -1,0 +1,56 @@
+﻿@model United4Admin.WebApplication.ViewModels.UploadCsvVM
+@{
+    bool showInputs = true;
+}
+
+<form method="post" enctype="multipart/form-data" onsubmit="UploadButton.disabled = true; return true;">
+    <div class="form-horizontal">
+        <h4>
+            Upload CSV File of Child Ids for Web
+        </h4>
+        <p>This is where you can upload a csv (comma separated values) file of Child Ids for children that are available to be sponsored through the web site. The file will be checked for valid Child Ids which should be in the first column of the submitted csv file. Please tick the check box below if the file has a header row of column names.</p>
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <label class="text-danger">@Html.Raw(Model.ErrorMessage)</label>
+        <input asp-for="ShowInputs" type="hidden" />
+        @if (Model.ShowInputs)
+        {
+            <div class="form-group">
+                <label asp-for="HeaderRow" class="control-label col-md-2"></label>
+                <div class="col-md-2">
+                    <input asp-for="HeaderRow" type="checkbox" class="form-control check-box" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Select File</label>
+
+                <div class="col-md-10">
+                    <input type="file" name="CsvFile" id="CsvFile" class="form-control" accept=".csv,application/csv,text/csv" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div>
+                    <input type="submit" name="UploadButton" value="Upload File" class="btn btn-primary" onclick="uploadFiles()" />
+                </div>
+            </div>
+            <div id="Progress" hidden="hidden">
+                <label class="text-info">File is being uploaded and processed. Please do not close this browser window.</label>
+                <div class="loader"></div>
+            </div>
+        }
+    </div>
+
+
+</form>
+<script type="text/javascript">
+    function uploadFiles() {
+        $("#Progress").show();
+
+    }
+
+
+
+
+</script>

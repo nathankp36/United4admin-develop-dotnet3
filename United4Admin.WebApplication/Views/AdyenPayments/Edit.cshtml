@@ -1,0 +1,123 @@
+﻿@model United4Admin.WebApplication.ViewModels.AdyenTransactionVM
+
+@{
+    String action = ViewBag.Action;
+    var transactions = Model.TransactionList;
+    Model.Supporter.FirstName = Model.Supporter.FirstName + " " + Model.Supporter.LastName;
+    var lastPaymentDate = Model.BillCycleNextDate.ToString("dd/MM/yyyy");
+    bool buttonVisible = (Model.LastPaymentStatus == "Failed" || Model.BillCycleNextDate <= DateTime.Today) ? true : false;
+}
+
+@if (ViewBag.Notification != null)
+{
+    <span id="Notification" class="text-success pull-right">
+        @ViewBag.Notification
+    </span>
+}
+<style>
+    .control-labelAdyen {
+        margin-bottom: 0;
+        text-align: left;
+        font-weight:normal;
+    }
+</style>
+<script>
+    $("#Notification").fadeOut(6000);
+</script>
+<form method="post">
+    <div class="form-horizontal">
+        <h4>
+            Transaction History
+        </h4>
+        <div class="form-group pull-right">
+            <div>
+                &nbsp;  <a> </a>
+
+                  <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+        <hr />
+        &nbsp;
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input asp-for="AdyenTransactionId" type="hidden" class="form-control" />
+        <input asp-for="LastTransactionId" type="hidden" class="form-control" />
+        <input asp-for="RecurringToken" type="hidden" class="form-control" />
+        <input asp-for="BillCycleStartDate" type="hidden" class="form-control" />
+        <input asp-for="BillCycleNextDate" type="hidden" class="form-control" />
+        <input asp-for="LastPaymentStatus" type="hidden" class="form-control" />
+        <input asp-for="NoOfRetryAttempts" type="hidden" class="form-control" />
+        <input asp-for="Amount" type="hidden" class="form-control" />
+        <input asp-for="ShopperReference" type="hidden" class="form-control" />
+        <input asp-for="CurrencyCode" type="hidden" class="form-control" />
+        <input asp-for="LastPaymentDate" type="hidden" class="form-control" />
+        <input asp-for="ContactId" type="hidden" class="form-control" />
+        <input asp-for="BillCycleNextDate" type="hidden" class="form-control" />
+        <div class="form-group">
+            <div class="col-md-4">
+                <label asp-for="Supporter.EmailAddress1" class="col-md-2">Email:</label>
+                <label asp-for="Supporter.EmailAddress1" class="control-labelAdyen col-md-7">@Model.Supporter.EmailAddress1</label>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="Supporter.FirstName" class="col-md-5">Supporter Name:</label>
+                <label asp-for="Supporter.FirstName" class="control-labelAdyen col-md-7">@Model.Supporter.FirstName</label>
+            </div>
+            <div class="col-md-3">
+                <label asp-for="BillCycleNextDate" class="col-md-6">Next Payment Date:</label>
+                <label asp-for="BillCycleNextDate" class="control-labelAdyen col-md-5">@lastPaymentDate</label>
+            </div>
+            @if (buttonVisible)//Visible button stautus failed or bill cycle next date <= currentdate
+            {
+                <div class="col-md-2">
+                    <input type="submit" value="Resubmit" class="btn btn-primary" />
+                </div>
+            }
+        </div>
+        <div class="form-group">
+        </div>
+        <table class="table">
+            <tr>
+                <th scope="col" style="text-align:center">
+                    <label asp-for="@transactions.FirstOrDefault().TransactionStatus"></label>
+                </th>
+                <th scope="col">
+                    <label asp-for="@transactions.FirstOrDefault().ExternalPaymentId"></label>
+                </th>
+                <th scope="col">
+                    <label asp-for="Amount"></label>
+                </th>
+                <th scope="col">
+                    <label asp-for="@transactions.FirstOrDefault().TransactionDate"></label>
+                </th>
+            </tr>
+
+            @foreach (var item in transactions)
+            {
+                var status = item.TransactionStatus == "A" ? "Authorised" : "Failed";
+                <tr>
+                    @if (status == "Authorised")
+                    {
+                        <td style="text-align:center">
+                            <img src="~/css/Images/success_icon.png" width="30" height="30" style="text-align:center">
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="text-align:center">
+                            <img src="~/css/Images/failure_icon.png" width="30" height="27" style="text-align:center">
+                        </td>
+                    }
+                    <td>
+                        @item.ExternalPaymentId
+                    </td>
+                    <td>
+                        @item.TransactionItem.FirstOrDefault().DonationAmount.ToString("0.00")
+                    </td>
+                    <td>
+                        @item.TransactionDate.ToString("dd/MM/yyyy")
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</form>

@@ -1,0 +1,70 @@
+﻿@model United4Admin.WebApplication.ViewModels.PaymentMethodVM
+
+@{
+    String action = ViewBag.Action;
+}
+
+<form method="post">
+
+    <div class="form-horizontal">
+        <h4>
+            @action Payment Method
+        </h4>
+
+        <div class="form-group pull-right">
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-controller="NavisionMapping" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+        <hr />
+
+        &nbsp;
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @*<input asp-for="ddlWvType" type="hidden" />*@
+        <input asp-for="Create" type="hidden" />
+        <div class="form-group">
+            <label asp-for="ddlWvType" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    @if (action == "Edit")
+                    {
+                        <input asp-for="ddlWvType" class="form-control" disabled="disabled" />
+                    }
+                    @if (action == "Create")
+                    {
+                        <input asp-for="ddlWvType" class="form-control" />
+                    }
+                    <input asp-for="ddlWvType" type="hidden" />
+                    <span asp-validation-for="ddlWvType" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="crmPaymentMethodName" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input asp-for="crmPaymentMethodName" class="form-control" />
+                    <span asp-validation-for="crmPaymentMethodName" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="crmPaymentMethodType" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input asp-for="crmPaymentMethodType" class="form-control" />
+                    <span asp-validation-for="crmPaymentMethodType" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@if (action == "Edit")
+{
+    <div>
+        <div class="control-label col-md-2"></div>
+        <a asp-action="Delete" asp-route-id="@Model.ddlWvType" class="btn btn-danger">Delete</a>
+    </div>
+}

@@ -1,0 +1,21 @@
+﻿@model United4Admin.WebApplication.ViewModels.NoRecordVM
+@{
+    string title = !string.IsNullOrEmpty(Model.Title) ? Model.Title : "Welcome to United 4 Admin";
+    string description = !string.IsNullOrEmpty(Model.Description) ? Model.Description : "No Records Found!";
+}
+
+<div class="row">
+    <div class="form-horizontal">
+        <h4>
+            @title
+        </h4>
+        <hr />
+        <p>
+            @description
+        </p>
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>

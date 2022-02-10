@@ -1,0 +1,59 @@
+[
+  {
+    "outputFileName": "wwwroot/Content/css/bootstrap.min.css",
+    "inputFiles": [      
+      "wwwroot/Content/bootstrap.css",
+      "wwwroot/Content/bootstrap-datepicker.css",
+      "wwwroot/Content/bootstrap-datepicker.standalone.css",
+      "wwwroot/Content/bootstrap-theme.css"
+
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/js/jquery.validate.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/jquery.validate.js",
+      "wwwroot/Scripts/jquery.validate.unobtrusive.js",
+      "wwwroot/Scripts/jquery.validate-vsdoc.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/js/modernizr.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts//modernizr-2.8.3.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/js/bootstrap.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts//bootstrap.js",
+      "wwwroot/Scripts//bootstrap-datepicker.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/js/jquery.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/jquery-3.3.1.js",
+      "wwwroot/Scripts/jquery-3.3.1.intellisense.js",
+      "wwwroot/Scripts/jquery-3.3.1.slim.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/Scripts/js/bootstrap-datepicker.min.js",
+    "inputFiles": [
+      "wwwroot/Scripts/bootstrap-datepicker.js"
+    ]
+  }
+]

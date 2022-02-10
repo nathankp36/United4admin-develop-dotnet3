@@ -1,0 +1,22 @@
+﻿@model IEnumerable<United4Admin.WebApplication.ViewModels.PermissionsVM>
+<br />
+<p class="text-danger">Sorry you do not have access to that part of the United 4 Administration Tool. Please contact an administrator to obtain access.</p>
+<h4>Administrators</h4>
+<table class="table">
+    <caption hidden="hidden">Administrators</caption>
+    <tr>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().WVEmail"></label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.WVEmail
+            </td>
+        </tr>
+    }
+
+</table>

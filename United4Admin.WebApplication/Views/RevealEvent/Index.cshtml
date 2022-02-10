@@ -1,0 +1,47 @@
+﻿@model IEnumerable<United4Admin.WebApplication.ViewModels.RevealEventVM>
+
+@{
+
+}
+<h4>Reveal Events</h4>
+@if (ViewBag.Notification != null)
+{
+    <span id="Notification" class="text-success pull-right">
+        @ViewBag.Notification
+    </span>
+}
+<script>
+    $("#Notification").fadeOut(6000);
+</script>
+<p>
+    <a asp-action="Create">Create New</a>    
+</p>
+<table class="table">
+    <caption hidden="hidden">Reveal Events</caption>
+    <tr>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().Name"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().EventDate"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().Location"></label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RevealEventId">@item.Name</a>
+            </td>
+            <td>
+                @item.EventDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.Location
+            </td>
+        </tr>
+    }
+</table>

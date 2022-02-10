@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+@{
+    var country = United4Admin.WebApplication.ViewModels.AppConfigValues.HostedCountry;
+    string crmQuarantineDisplay = United4Admin.WebApplication.ViewModels.AppConfigValues.CRMQuarantineDisplay;
+    bool displayQuarentine = crmQuarantineDisplay.ToLower() == "true" ? true : false;
+    string crmNavTitle = United4Admin.WebApplication.ViewModels.AppConfigValues.CRMQuarantineNavTitle;
+
+    string crmDisplayNavigation = United4Admin.WebApplication.ViewModels.AppConfigValues.crmDisplayNavigation;
+    bool displayCRMNavigation = crmDisplayNavigation.ToLower() == "true" ? true : false;
+    string Title = United4Admin.WebApplication.ViewModels.AppConfigValues.crmNavigationTitle;
+    string crmMappingPath = United4Admin.WebApplication.ViewModels.AppConfigValues.crmMappingPath;
+    string DatamappingController = crmMappingPath.ToLower().IndexOf("simma") != -1 ? "SimmaMapping" : "NavisionMapping";
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - United 4 Admin</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/css/jquery-ui.min.css" rel="stylesheet" />
+
+
+
+    @*<script src="~/Scripts/js/bootstrap.min.js"></script>
+        <script src="~/Scripts/js/bootstrap-datepicker.min.js"></script>
+        <script src="~/Scripts/js/jquery.validate.min.js"></script>
+        <script src="~/Scripts/js/modernizr.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/js/jquery-ui.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/common.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-controller="Home" asp-action="Index" class="navbar-brand">United 4 Admin</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Child Data
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="UploadChildIds" asp-action="Upload">Upload Child Ids</a></li>
+                            <li><a asp-controller="UploadChildIds" asp-action="ChildList">Child List</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            CRM
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="CRMExtract" asp-action="Index">CRM Extract</a></li>
+                            @if (displayCRMNavigation)
+                            {
+                                <li><a asp-controller="@DatamappingController" asp-action="Index">@Title</a></li>
+                            }
+                            @if (displayQuarentine)
+                            {
+                                <li><a asp-controller="CRMQuarantine" asp-action="Index">@crmNavTitle</a></li>
+                            }
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Chosen Registrations
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="Registrations" asp-action="Index">Sign-Ups</a></li>
+                            <li><a asp-controller="PhotoUpload" asp-action="Index">Photo Upload</a></li>
+                            <li><a asp-controller="PhotoApproval" asp-action="Index">Photo Approval</a></li>
+                            <li><a asp-controller="PreRevealExtract" asp-action="Index">Pre-Reveal Extract</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Chosen Events
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="RegistrationEvent" asp-action="Index">Registration Events</a></li>
+                            <li><a asp-controller="ChoosingEvent" asp-action="Index">Choosing Events</a></li>
+                            <li><a asp-controller="RevealEvent" asp-action="Index">Reveal Events</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-controller="AddOnDonation" asp-action="Index">
+                            Add-on donations
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Admin
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="Administration" asp-action="UserIndex">User Management</a></li>
+                        </ul>
+                    </li>
+                    @*@if (country == "SA")
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Adyen
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-controller="AdyenPayments" asp-action="Index">Adyen Payments</a></li>
+                            </ul>
+                        </li>
+                    }*@
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - The Digital Collective</p>
+        </footer>
+    </div>
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

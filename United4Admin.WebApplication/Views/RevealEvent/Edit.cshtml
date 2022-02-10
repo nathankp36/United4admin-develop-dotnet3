@@ -1,0 +1,84 @@
+﻿@model United4Admin.WebApplication.ViewModels.RevealEventVM
+
+@{
+    String action = ViewBag.Action;
+}
+
+
+
+<form method="post">
+
+    <div class="form-horizontal">
+        <h4>
+            @action Reveal Event
+        </h4>
+
+        <div class="form-group pull-right">
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+        <hr />
+
+        &nbsp;
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input asp-for="RevealEventId" type="hidden" />
+        <input asp-for="Create" type="hidden" />        
+        <div class="form-group">
+            <label asp-for="Name" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <input asp-for="Name" class="form-control" />                
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="EventDate" class="control-label col-md-2"></label>
+			<div class="col-md-2">
+				<div class="input-group">
+					<input asp-for="EventDate" class="datePicker form-control" />
+					<span class="input-group-addon">
+						<span class="glyphicon glyphicon-calendar"></span>
+					</span>
+					<span asp-validation-for="EventDate" class="text-danger"></span>
+				</div>
+			</div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Location" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TypeOfReveal" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+                <select asp-for="TypeOfReveal" class="form-control" asp-items="@(new SelectList(Model.TypeOfRevealList))">
+                    <option value="">Please Select...</option>
+                </select>
+                <span asp-validation-for="TypeOfReveal" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="WorkflowStatusId" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+                <select asp-for="WorkflowStatusId" class="form-control" asp-items="@(new SelectList(Model.WorkFlowStatuses,"WorkflowStatusId","WorkflowStatusLookupName"))">
+                    <option value="">Please Select...</option>
+                </select>
+                <span asp-validation-for="WorkflowStatusId" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+    </div>
+</form>
+
+@if (action == "Edit")
+{
+    <div>
+        <div class="control-label col-md-2"></div>
+        <a asp-action="Delete" asp-route-id="@Model.RevealEventId" class = "btn btn-danger">Delete</a>        
+    </div>
+}

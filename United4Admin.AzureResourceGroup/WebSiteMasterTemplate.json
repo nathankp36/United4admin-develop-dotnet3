@@ -1,0 +1,206 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"GitHubFetcherWebServiceURI": {
+			"type": "string"
+		},
+		"_GitHubLocation": {
+			"type": "string"
+		},
+		"_GitHubAccessToken": {
+			"type": "string"
+		},
+		"environmentName": {
+			"type": "string"
+		},
+		"skuName": {
+			"type": "string"
+		},
+		"skuCapacity": {
+			"type": "int"
+		},
+		"CRMExtractData:CRMType": {
+			"type": "string"
+		},
+		"CRMExtractData:HostedCountry": {
+			"type": "string"
+		},
+		"CRMExtractData:CRMQuarantineDisplay": {
+			"type": "bool"
+		},
+		"AzureAd:Instance": {
+			"type": "string"
+		},
+		"AzureAd:TenantId": {
+			"type": "string"
+		},
+		"AzureAd:Domain": {
+			"type": "string"
+		},
+		"AzureAd:ClientId": {
+			"type": "string"
+		},
+		"ApiConfig:ApiBaseUrl": {
+			"type": "string"
+		},
+		"ApiConfig:ApiToken": {
+			"type": "string"
+		},
+		"ApiConfig:ApiVersion": {
+			"type": "string"
+		},
+		"LogStorageDetails:StorageAccountName": {
+			"type": "string"
+		},
+		"LogStorageDetails:StorageAccountKey": {
+			"type": "string"
+		},
+		"LogStorageDetails:LogStorageContainer": {
+			"type": "string"
+		},
+		"CRMMapping:crmNavigationTitle": {
+			"type": "string"
+		},
+		"CRMMapping:crmDisplayNavigation": {
+			"type": "string"
+		},
+		"CRMMapping:crmMappingPath": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"nestedHostingPlanTemplateFile": "[concat(parameters('GitHubFetcherWebServiceURI'), '?githuburi=', parameters('_GitHubLocation'), '/', 'deployHostingPlan.json', '&githubaccesstoken=', parameters('_GitHubAccessToken'))]",
+		"nestedWebSiteTemplateFile": "[concat(parameters('GitHubFetcherWebServiceURI'), '?githuburi=', parameters('_GitHubLocation'), '/', 'deployWebSite.json', '&githubaccesstoken=', parameters('_GitHubAccessToken'))]",
+		"nestedAppSettingTemplateFile": "[concat(parameters('GitHubFetcherWebServiceURI'), '?githuburi=', parameters('_GitHubLocation'), '/', 'deployAppSetting.json', '&githubaccesstoken=', parameters('_GitHubAccessToken'))]",
+		"apiVersion": "2017-05-10",
+		"contentVersion": "1.0.0.0",
+		"mode": "Incremental",
+		"hostingPlanName": "[toLower(concat(parameters('environmentName'), '-Hosting-Plan'))]",
+		"webSiteName": "[toLower(concat(parameters('environmentName'), '-Webapp'))]",
+		"hostingPlanTemplate": "hostingPlanTemplate",
+		"webSiteTemplate": "webSiteTemplate",
+		"appSettingTemplate": "appSettingTemplate"
+		
+	},
+	"resources": [
+		{
+			"apiVersion": "[variables('apiVersion')]",
+			"name": "[variables('hostingPlanTemplate')]",
+			"type": "Microsoft.Resources/deployments",
+			"properties": {
+				"mode": "[variables('mode')]",
+				"templateLink": {
+					"uri": "[variables('nestedHostingPlanTemplateFile')]",
+					"contentVersion": "[variables('contentVersion')]"
+				},
+				"parameters": {
+					"hostingPlanName": {
+						"value": "[variables('hostingPlanName')]"
+					},
+					"skuName": {
+						"value": "[parameters('skuName')]"
+					},
+					"skuCapacity": {
+						"value": "[parameters('skuCapacity')]"
+					}
+				}
+			}
+		},
+		{
+			"apiVersion": "[variables('apiVersion')]",
+			"name": "[variables('webSiteTemplate')]",
+			"type": "Microsoft.Resources/deployments",
+			"dependsOn": [
+				"[variables('hostingPlanTemplate')]"
+			],
+			"properties": {
+				"mode": "[variables('mode')]",
+				"templateLink": {
+					"uri": "[variables('nestedWebSiteTemplateFile')]",
+					"contentVersion": "[variables('contentVersion')]"
+				},
+				"parameters": {
+					"hostingPlanName": {
+						"value": "[variables('hostingPlanName')]"
+					},
+					"webSiteName": {
+						"value": "[variables('webSiteName')]"
+					},
+					"outputHostingPlanReference": {
+						"value": "[reference(variables('hostingPlanTemplate')).outputs.outputHostingPlanReference.value]"
+					}
+				}
+			}
+		},
+		{
+			"apiVersion": "[variables('apiVersion')]",
+			"name": "[variables('appSettingTemplate')]",
+			"type": "Microsoft.Resources/deployments",
+			"dependsOn": [
+				"[variables('hostingPlanTemplate')]",
+				"[variables('webSiteTemplate')]"
+			],
+			"properties": {
+				"mode": "[variables('mode')]",
+				"templateLink": {
+					"uri": "[variables('nestedAppSettingTemplateFile')]",
+					"contentVersion": "[variables('contentVersion')]"
+				},
+				"parameters": {
+					"webSiteName": {
+						"value": "[variables('webSiteName')]"
+					},
+					"CRMExtractData:CRMType": {
+						"value": "[parameters('CRMExtractData:CRMType')]"
+					},
+					"CRMExtractData:HostedCountry": {
+						"value": "[parameters('CRMExtractData:HostedCountry')]"
+					},
+					"CRMExtractData:CRMQuarantineDisplay": {
+						"value": "[parameters('CRMExtractData:CRMQuarantineDisplay')]"
+					},
+					"AzureAd:Instance": {
+						"value": "[parameters('AzureAd:Instance')]"
+					},
+					"AzureAd:Domain": {
+						"value": "[parameters('AzureAd:Domain')]"
+					},
+					"AzureAd:TenantId": {
+						"value": "[parameters('AzureAd:TenantId')]"
+					},
+					"AzureAd:ClientId": {
+						"value": "[parameters('AzureAd:ClientId')]"
+					},
+					"ApiConfig:ApiBaseUrl": {
+						"value": "[parameters('ApiConfig:ApiBaseUrl')]"
+					},
+					"ApiConfig:ApiToken": {
+						"value": "[parameters('ApiConfig:ApiToken')]"
+					},
+					"ApiConfig:ApiVersion": {
+						"value": "[parameters('ApiConfig:ApiVersion')]"
+					},
+					"LogStorageDetails:StorageAccountName": {
+						"value": "[parameters('LogStorageDetails:StorageAccountName')]"
+					},
+					"LogStorageDetails:StorageAccountKey": {
+						"value": "[parameters('LogStorageDetails:StorageAccountKey')]"
+					},
+					"LogStorageDetails:LogStorageContainer": {
+						"value": "[parameters('LogStorageDetails:LogStorageContainer')]"
+					},
+					"CRMMapping:crmNavigationTitle": {
+						"value": "[parameters('CRMMapping:crmNavigationTitle')]"
+					},
+					"CRMMapping:crmDisplayNavigation": {
+						"value": "[parameters('CRMMapping:crmDisplayNavigation')]"
+					},
+					"CRMMapping:crmMappingPath": {
+						"value": "[parameters('CRMMapping:crmMappingPath')]"
+					}
+				}
+			}
+		}
+	]
+}

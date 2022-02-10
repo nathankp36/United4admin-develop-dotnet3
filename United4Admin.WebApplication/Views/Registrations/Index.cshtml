@@ -1,0 +1,281 @@
+﻿@using System.Security.Principal
+@model IEnumerable<United4Admin.WebApplication.ViewModels.SignUpVM>
+
+@{ bool EditSignUps = User.HasClaim(claim => claim.Type == "EditDeleteSupporterData" && claim.Value == "True");
+    bool CanDownLoadFiles = User.HasClaim(claim => claim.Type == "Download" && claim.Value == "True");
+    var choosingDDL = new List<United4Admin.WebApplication.ViewModels.ChoosingPartyVM>();
+    var extractType = string.Empty;
+    if (Model != null)
+    {
+        if (Model.ToList().Count > 0)
+        {
+            choosingDDL = Model.FirstOrDefault().ChoosingParties.ToList();
+            extractType = Model.FirstOrDefault().ExtractType;
+        }
+    }
+}
+
+
+<h4>Sign-Ups</h4>
+
+@if (ViewBag.DownLoadError != null)
+{
+    <p class="text-danger">@ViewBag.DownLoadError</p>}
+
+@if (ViewBag.Notification != null)
+{
+    <span id="Notification" class="text-success pull-right">
+        @ViewBag.Notification
+        <br />
+    </span>}
+<script>
+    $("#Notification").fadeOut(6000);
+</script>
+<br />
+<table class="table">
+    <caption hidden="hidden">Registrations</caption>
+    <tr>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().chosenSignUpId"></label>
+        </th>
+        <th scope="col">
+            Name
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().SignUpDate"></label>
+
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().SignUpEventId"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().ChosenStatusId"></label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (EditSignUps)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.chosenSignUpId">@item.chosenSignUpId</a> }
+                else
+                {
+                    <a asp-action="Details" asp-route-id="@item.chosenSignUpId">@item.chosenSignUpId</a>}
+            </td>
+            <td>
+                @if (EditSignUps)
+                {
+                    <a asp-action="Edit" asp-route-id="@item.chosenSignUpId">@item.FirstName @item.LastName</a> }
+                else
+                {
+                    <a asp-action="Details" asp-route-id="@item.chosenSignUpId">@item.FirstName  @item.LastName</a>}
+            </td>
+            <td>
+                @item.SignUpDate.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.SignUpEvent.EventName
+            </td>
+            <td>
+                @item.Status.Description
+            </td>
+        </tr>
+    }
+</table>
+
+@if (CanDownLoadFiles)
+{
+    <form method="post" id="exportData">
+        <input id="SignFieldDataType" name="SignFieldDataType" hidden />
+        <input id="SignExtractType" name="SignExtractType" hidden />
+        <input id="SignChoosingPartyId" name="SignChoosingPartyId" hidden />
+        <input id="SignStartDate" name="SignStartDate" hidden />
+        <input id="SignEndDate" name="SignEndDate" hidden />
+        <div class="form-horizontal">
+            <h4>
+                Download Sign-Up Data
+            </h4>
+            <hr />
+            &nbsp;
+            <div asp-validation-summary="All" class="text-danger" id="allValid"></div>
+            <div class="form-group">
+                <label asp-for="FirstOrDefault().FieldDataType" class="control-label col-md-3 exportlbl">Choose Your Data</label>
+                <div class="col-md-9">
+                    <input asp-for="FirstOrDefault().FieldDataType" type="radio" value="fieldData" id="allfieldData" checked />
+                    <label>Field Data</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input asp-for="FirstOrDefault().FieldDataType" type="radio" value="crm" id="crmData" />
+                    <label>CRM Data</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input asp-for="FirstOrDefault().FieldDataType" type="radio" value="photos" id="photosData" />
+                    <label>Photos as Zip File</label>
+                </div>
+                <span asp-validation-for="FirstOrDefault().ExtractType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstOrDefault().ExtractType" class="control-label col-md-3 exportlbl">Choose Your Export Range</label>
+                <div class="col-md-9">
+                    <input asp-for="FirstOrDefault().ExtractType" type="radio" value="newtransaction" id="allNewType" checked />
+                    <label>All New Sign-Ups</label> &nbsp;&nbsp;
+                    <input asp-for="FirstOrDefault().ExtractType" type="radio" value="date" id="dateType" />
+                    <label>Date Range</label> &nbsp;&nbsp;
+                    <input asp-for="FirstOrDefault().ExtractType" type="radio" value="choosing" id="choosingEvent" />
+                    <label>Choosing Event</label>
+                </div>
+                <span asp-validation-for="FirstOrDefault().ExtractType" class="text-danger"></span>
+            </div>
+            <div id="Datediv" hidden>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label asp-for="FirstOrDefault().StartDate" class="control-label col-md-3"></label>
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <input asp-for="FirstOrDefault().StartDate" class="datePicker form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                            <span asp-validation-for="FirstOrDefault().StartDate" class="text-danger" id="validStart"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FirstOrDefault().EndDate" class="control-label col-md-3"></label>
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <input asp-for="FirstOrDefault().EndDate" class="datePicker form-control">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                            <span asp-validation-for="FirstOrDefault().EndDate" class="text-danger" id="validEnd"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Chosenddiv" hidden>
+                <div class="form-group">
+                    <label asp-for="FirstOrDefault().ChoosingPartyId" class="control-label col-md-3"></label>
+                    <div class="col-md-4">
+                        <select asp-for="FirstOrDefault().ChoosingPartyId" class="form-control"
+                                asp-items="@(new SelectList(choosingDDL,"ChoosingPartyId","DisplayName"))">
+                            <option value="0">Please Select...</option>
+                        </select>
+                        <span asp-validation-for="FirstOrDefault().ChoosingPartyId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <div class="control-label col-md-3"></div>
+                    <input type="button" value="Export" class="btn btn-primary" onclick="exportData()" />
+                </div>
+            </div>
+        </div>
+    </form>}
+<script>
+        $(document).ready(function () {
+        $('input[name="ExtractType"]').change(
+            function () {
+             UpdateWVEventsDivs($(this).val().toString());
+         });
+        //update the divs according to the model
+        UpdateWVEventsDivs('@(!String.IsNullOrEmpty(extractType) ? extractType.ToString():"")');
+    });
+
+    function UpdateWVEventsDivs(typeOfEvent) {
+        if (typeOfEvent == "date") {
+            $("#Datediv").show();
+            $("#Chosenddiv").hide();
+            $('#EndDate').val('');
+            $('#StartDate').val('');
+            $('#validStart').text("");
+            $('#validEnd').text("");
+        }
+        else if (typeOfEvent == "choosing") {
+            $("#Datediv").hide();
+            $("#Chosenddiv").show();
+        }
+         else {
+            $("#Datediv").hide();
+            $("#Chosenddiv").hide();
+        }
+    }
+
+    //function to date valid and form submit
+    function exportData() {
+
+        var extractData = $("#ExtractType").val();
+        var choosingData = $("#ChoosingPartyId").val();
+        var startDate = $("#StartDate").val();
+        var endDate = $("#EndDate").val();
+        $("#SignStartDate").val(startDate);
+        $("#SignEndDate").val(endDate);
+        $("#SignChoosingPartyId").val(choosingData);
+
+        if ($("#dateType").is(":checked")) {
+            extractData = "date";
+            var startDate = $("#StartDate").val();//Year, Month, Date
+            var endDate = $("#EndDate").val();//Year, Month, Date
+
+            $("#validStart").text("");
+            $("#validEnd").text("");
+
+            if ($("#StartDate").val() == "") {
+                $("#validStart").text("Please Select Start Date");
+                if ($("#EndDate").val() == "") {
+                    $("#validEnd").text("Please Select End Date");
+                }
+                return false;
+            }
+
+            if ($("#EndDate").val() == "") {
+                $("#validEnd").text("Please Select End Date");
+                if ($("#StartDate").val() == "") {
+                    $("#validStart").text("Please Select Start Date");
+                }
+                return false;
+            }
+
+            var d1 = startDate.split("/");
+            var d2 = endDate.split("/");
+
+            d1 = d1[2].concat(d1[1], d1[0]);
+            d2 = d2[2].concat(d2[1], d2[0]);
+
+            if (parseInt(d1) > parseInt(d2)) {
+                $("#validStart").text("Start Date Should Not Greater Than End Date");
+                return false;
+            }
+
+        }
+        else if ($("#allNewType").is(":checked")) {
+            extractData = "newtransaction";
+        }
+        else {
+            extractData = "choosing";
+        }
+
+        $("#SignExtractType").val(extractData);
+
+        if ($("#allfieldData").is(":checked")) {
+            var dataType = "fieldData";
+            $("#SignFieldDataType").val(dataType);
+            $('#exportData').attr('action', '/Registrations/DownloadFieldData');
+            $("#exportData").submit();
+        }
+        if ($("#crmData").is(":checked")) {
+            var dataType = "crm";
+            $("#SignFieldDataType").val(dataType);
+            $('#exportData').attr('action', '/Registrations/DownloadECHOData');
+            $("#exportData").submit();
+        }
+        if ($("#photosData").is(":checked")) {
+            var dataType = "photos";
+            $("#SignFieldDataType").val(dataType);
+            $('#exportData').attr('action', '/Registrations/DownloadPhotos');
+            $("#exportData").submit();
+        }
+    }
+</script>
+
+

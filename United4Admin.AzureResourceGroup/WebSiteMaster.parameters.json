@@ -1,0 +1,73 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"GitHubFetcherWebServiceURI": {
+			"value": "GitHub-Access-URL"
+		},
+		"_GitHubLocation": {
+			"value": "GitHub-Location"
+		},
+		"_GitHubAccessToken": {
+			"value": "UGitHub-Access-Token"
+		},
+		"environmentName": {
+			"value": "UND4A-Sandbox"
+		},
+		"skuName": {
+			"value": "skuName"
+		},
+		"skuCapacity": {
+			"value": "skuCapacity"
+		},
+		"CRMExtractData:CRMType": {
+			"value": "CRMExtractData-CRMType"
+		},
+		"CRMExtractData:CRMQuarantineDisplay": {
+			"value": "CRMExtractData-CRMQuarantineDisplay"
+		},
+		"CRMExtractData:HostedCountry": {
+			"value": "CRMExtractData-HostedCountry"
+		},
+		"AzureAd:Instance": {
+			"value": "AzureAd-Instance"
+		},
+		"AzureAd:Domain": {
+			"value": "AzureAd-Domain"
+		},
+		"AzureAd:TenantId": {
+			"value": "AzureAd-TenantId"
+		},
+		"AzureAd:ClientId": {
+			"value": "AzureAd-ClientId"
+		},
+		"ApiConfig:ApiBaseUrl": {
+			"value": "ApiConfig-ApiBaseUrl"
+		},
+		"ApiConfig:ApiToken": {
+			"value": "ApiConfig-ApiToken"
+		},
+		"ApiConfig:ApiVersion": {
+			"value": "ApiConfig-ApiVersion"
+		},
+		"LogStorageDetails:StorageAccountName": {
+			"value": "LogStorageDetails-StorageAccountName"
+		},
+		"LogStorageDetails:StorageAccountKey": {
+			"value": "LogStorageDetails-StorageAccountKey"
+		},
+		"LogStorageDetails:LogStorageContainer": {
+			"value": "LogStorageDetails-LogStorageContainer"
+		},
+		"CRMMapping:crmNavigationTitle": {
+			"value": "Data Mapping"
+		},
+		"CRMMapping:crmDisplayNavigation": {
+			"value": "false"
+		},
+		"CRMMapping:crmMappingPath": {
+			"value": "simma-mapping"
+		}
+	}
+}
+

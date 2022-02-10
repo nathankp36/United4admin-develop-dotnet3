@@ -1,0 +1,118 @@
+﻿@model United4Admin.WebApplication.ViewModels.SignUpEventVM
+
+@{
+    bool connectedRegistrations = Model.LinkedRegistrations;
+    string disableButton = "";
+    if (connectedRegistrations)
+    { disableButton = "disabled='disabled'"; }
+}
+
+
+<div>
+    <h4>Delete Registration Event</h4>
+    <div class="alert alert-danger">Are you sure you want to remove this registration event?</div>
+    <dl class="dl-horizontal">
+        <dt>
+            <label asp-for="EventName"></label>
+        </dt>
+        <dd>
+            @Model.EventName
+        </dd>
+        <dt>
+            <label asp-for="Location"></label>
+        </dt>
+
+        <dd>
+            @Model.Location
+        </dd>
+        <dt>
+            <label asp-for="EventDate"></label>
+        </dt>
+        <dd>
+            @Model.EventDate.ToString("dd/MM/yyyy")
+        </dd>
+        <dt>
+            <label asp-for="PublishDate"></label>
+        </dt>
+
+        <dd>
+            @Model.PublishDate.ToString("dd/MM/yyyy")
+        </dd>
+        <dt>
+            <label asp-for="ClosedDate"></label>
+        </dt>
+        <dd>
+            @Model.ClosedDate.ToString("dd/MM/yyyy")
+        </dd>
+
+        <dt>
+            <label asp-for="TypeOfRegistration"></label>
+        </dt>
+
+        <dd>
+            @Model.TypeOfRegistration
+        </dd>
+        <dt>
+            <label asp-for="ShortURL"></label>
+        </dt>
+
+        <dd>
+            @Model.ShortURL
+        </dd>
+        <dt>
+            <label asp-for="CampaignCode"></label>
+        </dt>
+
+        <dd>
+            @Model.CampaignCode
+        </dd>
+        <dt>
+            <label asp-for="SpecificChoosingEvent"></label>
+        </dt>
+        <dd>
+            @Model.SpecificChoosingEvent
+        </dd>
+        <dt>
+            <label asp-for="ChoosingPartyId"></label>
+        </dt>
+        <dd>
+            @if (@Model.ChoosingParty != null)
+            {
+                @Model.ChoosingParty.DisplayName
+            }
+        </dd>
+        <dt>
+            <label asp-for="RevealEventId"></label>
+        </dt>
+        <dd>
+            @if (@Model.RevealEvent != null)
+            {
+                @Model.RevealEvent.DisplayName
+            }
+        </dd>
+        <dt>
+            <label asp-for="WorkflowStatus"></label>
+        </dt>
+        <dd>
+            @if (@Model.WorkflowStatus != null)
+            {
+                @Model.WorkflowStatus.WorkflowStatusLookupName
+            }
+        </dd>
+        <dt>
+            <label asp-for="NotesComments"></label>
+        </dt>
+        <dd>
+            @Model.NotesComments
+        </dd>
+    </dl>
+
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="control-label col-md-2"></div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" @disableButton />
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

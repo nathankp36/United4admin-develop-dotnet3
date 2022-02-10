@@ -1,0 +1,114 @@
+﻿@model United4Admin.WebApplication.ViewModels.UploadCsvVM
+@{
+
+}
+<h4>
+    Upload Progress
+</h4>
+@if (Model != null)
+{
+    if (Model.Error)
+    {<p>Sorry there has been an error: @Model.ErrorMessage</p>}
+else
+{
+    <p>Processing started: @Model.ConfirmationMessage</p>
+    <input type="text" asp-for="ProgressId" id="txtProgressId" style="display:none"/>
+
+    <div id="Progress">
+        <label class="text-info">File is being uploaded and processed. Please do not close this browser window.</label>
+        <div class="loader"></div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Progress information</div>
+            <div class="panel-body" id="updateNarrative">Initiating ...</div>
+        </div>
+        <div id="progressbarNarrative"></div>
+        <div class="progress">
+            <div class="progress-bar" style="width:0%"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        startUpdatingProgressIndicator();
+    });
+
+    var intervalId;
+    function startUpdatingProgressIndicator() {
+        intervalId = setInterval(
+            function () {
+                var progressID = $("#txtProgressId").val();
+                var url = "/UploadChildIds/GetProgress?Id=" + progressID;
+                $.getJSON(url, function (data) {
+                    //alert("Data is:" + data + ".");
+                    if (data != '' && data != null) {
+                        $("#updateNarrative").html('');
+                        var percentageSaved = 0;
+                        $(".progress-bar").css('width', percentageSaved + "%");
+                        var result1 = jQuery.parseJSON(data);
+                        if (result1.recordsSubmitted != 0) {
+                            $("#progressbarNarrative").html("Saving imported child ids to database ...");
+                            $("#updateNarrative").append("Records Submitted: " + result1.recordsSubmitted + "<br/>");
+                            $("#updateNarrative").append("Child Ids from non web publishable countries: " + result1.childIdsNotPublishable + "<br/>");
+                            $("#updateNarrative").append("Records Created: " + result1.recordsCreated + "<br/>");
+                            $("#updateNarrative").append("Records Kept: " + result1.recordsKept + "<br/>");
+                            var totalSaved = result1.recordsCreated + result1.recordsKept + result1.childIdsNotPublishable;
+
+                            percentageSaved = (totalSaved / result1.recordsSubmitted) * 100;
+                            $(".progress-bar").css('width', percentageSaved + "%");
+
+                            if (percentageSaved == 100) {
+                                $("#progressbarNarrative").html("Deleting child records not in imported child id list ...");
+                                $("#updateNarrative").append("Records not in imported child id list: " + result1.recordsNotInUpload + "<br/>");
+                                $("#updateNarrative").append("Records Deleted: " + result1.recordsDeleted + "<br/>");
+                                $("#updateNarrative").append("Records not deleted as in sponsorship process on website: " + result1.recordsNotDeleted + "<br/>");
+                                var doDeleteInfo = true;
+                                var deleteInfoFinished = false;
+                                if (result1.recordsNotInUpload > 0) {
+
+                                    var totalDeleteProcessed = result1.recordsDeleted + result1.recordsNotDeleted;
+                                    var percentageDeleted = (totalDeleteProcessed / result1.recordsNotInUpload) * 100;
+                                    if (percentageDeleted > 0) {
+                                        $(".progress-bar").css('width', percentageDeleted + "%");
+                                    }
+                                    deleteInfoFinished = percentageDeleted == 100;
+                                }
+                                else {
+                                    doDeleteInfo = false;
+                                }
+
+                                if (doDeleteInfo == false || deleteInfoFinished == true) {
+                                    $("#progressbarNarrative").html("Retrieving data from Horizon and RMT for each child data record ...");
+                                    $("#updateNarrative").append("Total records after update: " + result1.totalRecordsAfterUpdate + "<br/>");
+                                    $("#updateNarrative").append("Data retrieved from Horizon and RMT for " + result1.recordsProcessed + " records.<br/>");
+                                    var percentageProcessed = (result1.recordsProcessed / result1.totalRecordsAfterUpdate) * 100;
+                                    $(".progress-bar").css('width', percentageProcessed + "%");
+                                }
+                                if (percentageProcessed == 100) {
+                                    $("#progressbarNarrative").html("Updating Area Programme data from Horizon and RMT for each programmes ...");
+                                    $("#updateNarrative").append("New Area Programmes created: " + result1.projectRecordsCreated + "<br/>");
+                                    $("#updateNarrative").append("Data retrieved from Horizon and RMT for " + result1.projectRecordsProcessed + " Area Programme records.<br/>");
+                                    var percentageProjectsProcessed = (result1.projectRecordsProcessed / result1.projectRecordsCreated) * 100;
+                                    $(".progress-bar").css('width', percentageProjectsProcessed + "%");
+                                }
+                            }
+                            if (result1.processingFinished != null) {
+                                window.location.replace("@Url.Action("UploadConfirmed", "UploadChildIds")?ProcessingId=" + progressID);
+                            }
+                        }
+
+
+
+
+                    }
+                })
+
+
+            },
+            //update every 2 seconds
+            2000
+        );
+    }
+
+
+    </script>
+}
+}

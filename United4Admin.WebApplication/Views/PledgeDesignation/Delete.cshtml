@@ -1,0 +1,41 @@
+﻿@model United4Admin.WebApplication.ViewModels.PledgeDesignationVM
+
+<div>
+    <h4>Delete Pledge and Designation</h4>
+    <div class="alert alert-danger">Are you sure you want to remove this Pledge and Designation?</div>
+    <dl class="dl-horizontal">
+        <dt>
+            <label asp-for="WvFormDescription"></label>
+        </dt>
+        <dd>
+            @Model.WvFormDescription
+        </dd>
+        <dt>
+            <label asp-for="WvProductVariant"></label>
+        </dt>
+        <dd>
+            @Model.WvProductVariant
+        </dd>
+        <dt>
+            <label asp-for="CrmPledgeId"></label>
+        </dt>
+        <dd>
+            @Model.CrmPledgeId
+        </dd>
+        <dt>
+            <label asp-for="CrmDesignationId"></label>
+        </dt>
+        <dd>
+            @Model.CrmDesignationId
+        </dd>
+    </dl>
+
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="control-label col-md-2"></div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <a asp-controller="SimmaMapping" asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

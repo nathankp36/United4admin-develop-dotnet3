@@ -1,0 +1,55 @@
+﻿@model United4Admin.WebApplication.ViewModels.RevealEventVM
+
+@{
+    bool connectedRegistrations = Model.LinkedRegistrations;
+    string disableButton = "";
+    if(connectedRegistrations)
+    { disableButton = "disabled='disabled'"; }
+}
+
+
+    <div>
+        <h4>Delete Reveal Event</h4>
+        <div class="alert alert-danger">Are you sure you want to remove this reveal event?</div>
+        <dl class="dl-horizontal">
+            <dt>
+                <label asp-for="Name"></label>                
+            </dt>
+            <dd>
+                @Model.Name
+            </dd>
+            <dt>
+                <label asp-for="EventDate"></label>
+            </dt>
+            <dd>
+                @Model.EventDate.ToString("dd/MM/yyyy")
+            </dd>
+            <dt>
+                <label asp-for="Location"></label>
+            </dt>
+            <dd>
+                @Model.Location
+            </dd>
+            <dt>
+                <label asp-for="TypeOfReveal"></label>
+            </dt>
+            <dd>
+                @Model.TypeOfReveal
+            </dd>
+            <dt>
+                <label asp-for="WorkflowStatusId"></label>
+            </dt>
+            <dd>
+                @Model.WorkflowStatus.WorkflowStatusLookupName
+            </dd>
+        </dl>
+
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>            
+            <div class="control-label col-md-2"></div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" @disableButton />
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>

@@ -1,0 +1,10 @@
+﻿@model United4Admin.WebApplication.ViewModels.SignUpVM
+@{
+    ViewBag.Title = "Details";
+}
+    <div>
+        <h4>Registration for @Model.FirstName @Model.LastName</h4>
+        <partial name="_detail" for=@Model />        
+        <a asp-action="Index">Back to List</a>
+    </div>
+

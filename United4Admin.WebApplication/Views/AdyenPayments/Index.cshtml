@@ -1,0 +1,126 @@
+﻿@model IEnumerable<United4Admin.WebApplication.ViewModels.AdyenTransactionVM>
+
+@{
+
+}
+<h4>Adyen Subscriptions</h4>
+@if (ViewBag.Notification != null)
+{
+    <span id="Notification" class="text-success pull-right">
+        @ViewBag.Notification
+    </span>
+}
+<script>
+    $("#Notification").fadeOut(6000);
+</script>
+<form method="post">
+    <p>
+        <div class="form-group">
+            <div class="col-md-2">
+                <select asp-for="FirstOrDefault().SearchDDL" class="form-control" onchange="UpdateWVEventsDivs(this.value)">
+                    <option value="">Please Select...</option>
+                    <option value="EmailId">Email</option>
+                    <option value="Name">Name</option>
+                    <option value="TransactionDate">Transaction Date</option>
+                    <option value="DateRange">Date Range</option>
+                </select>
+            </div>
+            <div id="SearchDiv" class="col-md-3">
+                <input asp-for="FirstOrDefault().Search" class="col-md-3 form-control" />
+            </div>
+            <div id="SearchFromDateDiv" hidden  class="col-md-2">
+                <div id="labelFromDate" hidden>
+                </div>
+                <input asp-for="FirstOrDefault().SearchFromDate" class="datePicker form-control" placeholder="From Date"/>
+            </div>
+            <div id="SearchToDateDiv" hidden  class="col-md-2">
+
+                <input asp-for="FirstOrDefault().SearchToDate" class="datePicker form-control" placeholder="To Date"/>
+            </div>
+            &ensp;
+            <input type="submit" value="Search" class="btn btn-default" />
+        </div>
+    </p>
+</form>
+<div class="form-group">
+    <table class="table">
+        <caption hidden="hidden">Adyen Subscriptions</caption>
+        <tr>
+            <th scope="col" style="text-align:center">
+                <label asp-for="FirstOrDefault().LastPaymentStatus"></label>
+            </th>
+            <th scope="col">
+                <label asp-for="FirstOrDefault().Supporter.FirstName"></label>
+            </th>
+            <th scope="col">
+                <label asp-for="FirstOrDefault().Supporter.EmailAddress1"></label>
+            </th>
+            <th scope="col">
+                <label asp-for="FirstOrDefault().LastPaymentDate"></label>
+            </th>
+            <th scope="col">
+                <label asp-for="FirstOrDefault().Amount"></label>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (item.LastPaymentStatus == "Authorised")
+                {
+                    <td style="text-align:center">
+                        <img src="~/css/Images/success_icon.png" width="30" height="30" style="text-align:center">
+                    </td>
+                }
+                else
+                {
+                    <td style="text-align:center">
+                        <img src="~/css/Images/failure_icon.png" width="30" height="27" style="text-align:center">
+                    </td>
+                }
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ContactId">@item.Supporter.FirstName @item.Supporter.LastName</a>
+                </td>
+                <td>
+                    @item.Supporter.EmailAddress1
+                </td>
+                <td>
+                    @item.LastPaymentDate.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @item.Amount.ToString("0.00")
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+       // $('#SearchDDL').val().toString();
+        UpdateWVEventsDivs($('#SearchDDL').val().toString());
+    });
+    function UpdateWVEventsDivs(typeOfEvent) {
+        $("#SearchDiv").hide();
+        $("#SearchFromDateDiv").hide();
+        $("#SearchToDateDiv").hide();
+        $("labelFromDate").hide();
+        if (typeOfEvent == "TransactionDate") {
+            $("#SearchFromDateDiv").show();
+            $("#SearchToDateDiv").hide();
+            $("#SearchDiv").hide();
+            $("labelFromDate").hide();
+        }
+        else if (typeOfEvent == "DateRange") {
+            $("#SearchDiv").hide();
+            $("#SearchFromDateDiv").show();
+            $("#SearchToDateDiv").show();
+            $("labelFromDate").show();
+        }
+        else {
+            $("#SearchFromDateDiv").hide();
+            $("#SearchToDateDiv").hide();
+            $("labelFromDate").hide();
+            $("#SearchDiv").show();
+        }
+    }
+</script>

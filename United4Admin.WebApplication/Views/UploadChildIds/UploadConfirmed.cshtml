@@ -1,0 +1,14 @@
+﻿@model United4Admin.WebApplication.ViewModels.UploadCsvVM
+@{
+
+}
+<h4>
+    Upload Confirmation
+</h4>
+
+
+<p>Thank you for uploading your file.</p>
+<label class="text-success">@Html.Raw(Model.ConfirmationMessage)</label>
+<br/>
+<label class="text-danger">@Model.ErrorMessage</label>
+

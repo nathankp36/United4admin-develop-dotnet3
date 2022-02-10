@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Data>
+  <Echo>
+    <Salutation>MR</Salutation>
+    <FirstName>Testing</FirstName>
+    <MiddleName>17</MiddleName>
+    <LastName>Sandbox</LastName>
+    <Street1>2,First Street</Street1>
+    <PostalCode>6ED8967D</PostalCode>
+    <City>London</City>
+    <CountryCode>GB</CountryCode>
+    <ContactID>
+    </ContactID>
+    <LeadID>3C09582A-7BF1-459D-AE3A-8BFB16A24806</LeadID>
+    <EmailAddress>TestingSandbox17@worldvision.org.uk</EmailAddress>
+    <PhoneNumber1>1324657985</PhoneNumber1>
+    <TransactionReferenceNo>712FBA69-6B23-4D2D-86BA-367A720C2F0B</TransactionReferenceNo>
+    <Date>21/06/2021 17:50:18</Date>
+    <ProductID>5</ProductID>
+    <DonationvariantID>Signup</DonationvariantID>
+    <TriggerCode>Newsletter Signup</TriggerCode>
+    <MarketingCommsConsent>False</MarketingCommsConsent>
+    <BulkEmailConsent>0</BulkEmailConsent>
+    <PhoneConsent>1</PhoneConsent>
+    <SMSConsent>0</SMSConsent>
+  </Echo>
+  <Echo>
+    <Salutation>MR</Salutation>
+    <FirstName>Testing</FirstName>
+    <MiddleName>17</MiddleName>
+    <LastName>Sandbox</LastName>
+    <Street1>2,First Street</Street1>
+    <PostalCode>6ED8967D</PostalCode>
+    <City>London</City>
+    <CountryCode>GB</CountryCode>
+    <ContactID>
+    </ContactID>
+    <LeadID>3C09582A-7BF1-459D-AE3A-8BFB16A24806</LeadID>
+    <EmailAddress>TestingSandbox17@worldvision.org.uk</EmailAddress>
+    <PhoneNumber1>1324657985</PhoneNumber1>
+    <TransactionReferenceNo>D1C2615C-323D-464C-B25C-4F883CB9529A</TransactionReferenceNo>
+    <Date>21/06/2021 17:50:18</Date>
+    <ProductID>5</ProductID>
+    <DonationvariantID>Signup</DonationvariantID>
+    <TriggerCode>Newsletter Signup</TriggerCode>
+    <MarketingCommsConsent>False</MarketingCommsConsent>
+    <BulkEmailConsent>0</BulkEmailConsent>
+    <PhoneConsent>1</PhoneConsent>
+    <SMSConsent>0</SMSConsent>
+  </Echo>
+  <Echo>
+    <Salutation>
+    </Salutation>
+    <FirstName>Test name</FirstName>
+    <MiddleName>
+    </MiddleName>
+    <LastName>Last Name</LastName>
+    <Street1>
+    </Street1>
+    <PostalCode>
+    </PostalCode>
+    <City>
+    </City>
+    <CountryCode>
+    </CountryCode>
+    <ContactID>
+    </ContactID>
+    <LeadID>20CFB92B-F054-4C8E-96A1-0541DE715172</LeadID>
+    <EmailAddress>wvautomationtest743@mailinator.com</EmailAddress>
+    <PhoneNumber1>06621444</PhoneNumber1>
+    <TransactionReferenceNo>CBD2717A-C6BC-483C-AA81-85EB49FAAAFC</TransactionReferenceNo>
+    <Date>21/06/2021 05:17:21</Date>
+    <ProductID>6</ProductID>
+    <DonationvariantID>RegressionLeadSignup</DonationvariantID>
+    <TriggerCode>CampaignId</TriggerCode>
+    <MarketingCommsConsent>False</MarketingCommsConsent>
+    <BulkEmailConsent>1</BulkEmailConsent>
+    <PhoneConsent>0</PhoneConsent>
+    <SMSConsent>0</SMSConsent>
+  </Echo>
+  <Echo>
+    <Salutation>
+    </Salutation>
+    <FirstName>Test name</FirstName>
+    <MiddleName>
+    </MiddleName>
+    <LastName>Last Name</LastName>
+    <Street1>
+    </Street1>
+    <PostalCode>
+    </PostalCode>
+    <City>
+    </City>
+    <CountryCode>
+    </CountryCode>
+    <ContactID>
+    </ContactID>
+    <LeadID>20CFB92B-F054-4C8E-96A1-0541DE715172</LeadID>
+    <EmailAddress>wvautomationtest743@mailinator.com</EmailAddress>
+    <PhoneNumber1>06621444</PhoneNumber1>
+    <TransactionReferenceNo>74E5060E-5D09-4FF7-88FE-3F789F12591B</TransactionReferenceNo>
+    <Date>21/06/2021 05:19:26</Date>
+    <ProductID>7</ProductID>
+    <DonationvariantID>RegressionContentSignup</DonationvariantID>
+    <TriggerCode>CampaignId</TriggerCode>
+    <MarketingCommsConsent>False</MarketingCommsConsent>
+    <BulkEmailConsent>1</BulkEmailConsent>
+    <PhoneConsent>0</PhoneConsent>
+    <SMSConsent>0</SMSConsent>
+  </Echo>
+  <Echo>
+    <Salutation>MR</Salutation>
+    <FirstName>Testing</FirstName>
+    <MiddleName>17</MiddleName>
+    <LastName>Sandbox</LastName>
+    <Street1>2,First Street</Street1>
+    <PostalCode>6ED8967D</PostalCode>
+    <City>London</City>
+    <CountryCode>GB</CountryCode>
+    <ContactID>
+    </ContactID>
+    <LeadID>3C09582A-7BF1-459D-AE3A-8BFB16A24806</LeadID>
+    <EmailAddress>TestingSandbox17@worldvision.org.uk</EmailAddress>
+    <PhoneNumber1>1324657985</PhoneNumber1>
+    <TransactionReferenceNo>64D1F436-F838-43CA-AD04-E79575C315FD</TransactionReferenceNo>
+    <Date>21/06/2021 17:50:18</Date>
+    <ProductID>5</ProductID>
+    <DonationvariantID>Signup</DonationvariantID>
+    <TriggerCode>Newsletter Signup</TriggerCode>
+    <MarketingCommsConsent>False</MarketingCommsConsent>
+    <BulkEmailConsent>0</BulkEmailConsent>
+    <PhoneConsent>1</PhoneConsent>
+    <SMSConsent>0</SMSConsent>
+  </Echo>
+  <Echo>
+    <Salutation>
+    </Salutation>
+    <FirstName>Test name</FirstName>
+    <MiddleName>
+    </MiddleName>
+    <LastName>Last Name</LastName>
+    <Street1>
+    </Street1>
+    <PostalCode>
+    </PostalCode>
+    <City>
+    </City>
+    <CountryCode>
+    </CountryCode>
+    <ContactID>
+    </ContactID>
+    <LeadID>20CFB92B-F054-4C8E-96A1-0541DE715172</LeadID>
+    <EmailAddress>wvautomationtest743@mailinator.com</EmailAddress>
+    <PhoneNumber1>06621444</PhoneNumber1>
+    <TransactionReferenceNo>30922339-8542-4E57-B387-0D7ECB45E8AA</TransactionReferenceNo>
+    <Date>21/06/2021 05:15:27</Date>
+    <ProductID>5</ProductID>
+    <DonationvariantID>RegressionEmailSignup</DonationvariantID>
+    <TriggerCode>CampaignId</TriggerCode>
+    <MarketingCommsConsent>False</MarketingCommsConsent>
+    <BulkEmailConsent>1</BulkEmailConsent>
+    <PhoneConsent>0</PhoneConsent>
+    <SMSConsent>0</SMSConsent>
+  </Echo>
+  <Echo>
+    <Salutation>MR</Salutation>
+    <FirstName>Testing</FirstName>
+    <MiddleName>17</MiddleName>
+    <LastName>Sandbox</LastName>
+    <Street1>2,First Street</Street1>
+    <PostalCode>6ED8967D</PostalCode>
+    <City>London</City>
+    <CountryCode>GB</CountryCode>
+    <ContactID>
+    </ContactID>
+    <LeadID>3C09582A-7BF1-459D-AE3A-8BFB16A24806</LeadID>
+    <EmailAddress>TestingSandbox17@worldvision.org.uk</EmailAddress>
+    <PhoneNumber1>1324657985</PhoneNumber1>
+    <TransactionReferenceNo>79449623-2714-44AC-9BF0-D355DB90FB0A</TransactionReferenceNo>
+    <Date>21/06/2021 17:50:18</Date>
+    <ProductID>5</ProductID>
+    <DonationvariantID>Signup</DonationvariantID>
+    <TriggerCode>Newsletter Signup</TriggerCode>
+    <MarketingCommsConsent>False</MarketingCommsConsent>
+    <BulkEmailConsent>0</BulkEmailConsent>
+    <PhoneConsent>1</PhoneConsent>
+    <SMSConsent>0</SMSConsent>
+  </Echo>
+</Data>

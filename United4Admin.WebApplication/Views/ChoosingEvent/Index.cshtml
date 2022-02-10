@@ -1,0 +1,59 @@
+﻿@model IEnumerable<United4Admin.WebApplication.ViewModels.ChoosingPartyVM>
+
+@{
+    
+}
+<h4>Choosing Events</h4>
+@if (ViewBag.Notification != null)
+{
+    <span id="Notification" class="text-success pull-right">
+        @ViewBag.Notification
+    </span>
+}
+<script>
+    $("#Notification").fadeOut(6000);
+</script>
+<p>
+    <a asp-action="Create">Create New</a>    
+</p>
+<table class="table">
+    <caption hidden="hidden">Choosing Events</caption>
+    <tr>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().HorizonId"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().PartyName"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().Country"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().Location"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().PartyDate"></label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.HorizonId
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ChoosingPartyId">@item.PartyName</a>
+            </td>
+            <td>
+                @item.Country
+            </td>
+            <td>
+                @item.Location
+            </td>
+            <td>
+                @item.PartyDate.ToString("dd/MM/yyyy")
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,72 @@
+﻿@model United4Admin.WebApplication.ViewModels.PermissionsVM
+
+@{
+    String action = ViewBag.Action;
+}
+
+
+
+<form method="post">
+
+    <div class="form-horizontal">
+        <h4>
+            @action Permissions for User
+        </h4>
+
+        <div class="form-group pull-right">
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="UserIndex">Back to List</a>
+            </div>
+        </div>
+        <hr />
+
+        &nbsp;
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input asp-for="PermissionsId" type="hidden" />
+
+        <div class="form-group">
+            <label asp-for="WVEmail" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <input asp-for="WVEmail" class="form-control" />
+                <span asp-validation-for="WVEmail" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Administrator" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+                <input asp-for="Administrator" class="form-control" />
+                <span asp-validation-for="Administrator" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="EditDeleteSupporterData" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+                <input asp-for="EditDeleteSupporterData" class="form-control" />
+                <span asp-validation-for="EditDeleteSupporterData" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreateEditDeleteEvents" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+                <input asp-for="CreateEditDeleteEvents" class="form-control" />
+                <span asp-validation-for="CreateEditDeleteEvents" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DownloadFilesandImages" class="control-label col-md-2"></label>
+            <div class="col-md-2">
+                <input asp-for="DownloadFilesandImages" class="form-control" />
+                <span asp-validation-for="DownloadFilesandImages" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+</form>
+
+@if (action == "Edit")
+{
+    <div>
+        <div class="control-label col-md-2"></div>
+        <a asp-action="UserDelete" asp-route-Id="@Model.PermissionsId" class="btn btn-danger">Delete</a>
+    </div>
+}

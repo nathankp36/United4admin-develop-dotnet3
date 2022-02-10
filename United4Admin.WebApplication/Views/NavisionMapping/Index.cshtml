@@ -1,0 +1,131 @@
+﻿@model United4Admin.WebApplication.ViewModels.CRMMappingVM
+
+@{
+
+}
+@if (ViewBag.Notification != null)
+{
+    <span id="Notification" class="text-success pull-right">
+        @ViewBag.Notification
+    </span>
+}
+<script>
+    $("#Notification").fadeOut(6000);
+</script>
+<!--Salutation-->
+<h2>
+    Salutation
+</h2>
+<p>
+    <a asp-controller="Salutation" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <caption hidden="hidden">Salution</caption>
+    <tr>
+        <th scope="col">
+            <label asp-for="@Model.SalutationVM.FirstOrDefault().ddlSalutation"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="@Model.SalutationVM.FirstOrDefault().crmSalutation"></label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model.SalutationVM)
+    {
+        <tr>
+            <td>
+                <a asp-controller="Salutation" asp-action="Edit" asp-route-id="@item.ddlSalutation">@item.ddlSalutation</a>
+            </td>
+            <td>
+                @item.crmSalutation
+            </td>
+        </tr>
+    }
+</table>
+<br/>
+<!--Product Variant-->
+<h2>
+    Product Variant
+</h2>
+<p>
+    <a asp-controller="ProductVariant" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <caption hidden="hidden">Product Variant</caption>
+    <tr>
+        <th scope="col">
+            <label asp-for="@Model.ProductVariantVM.FirstOrDefault().crmProductVariantName"></label>
+        </th>
+        <th scope="col">            
+            <label asp-for="@Model.ProductVariantVM.FirstOrDefault().ddlProductTypeCodeDisplay"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="@Model.ProductVariantVM.FirstOrDefault().crmIncidentType"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="@Model.ProductVariantVM.FirstOrDefault().crmPurposeCode"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="@Model.ProductVariantVM.FirstOrDefault().crmPledgeType"></label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ProductVariantVM)
+    {
+        <tr>
+            <td>
+                <a asp-controller="ProductVariant" asp-action="Edit" asp-route-id="@item.ddlProductTypeCodeDisplay">@item.crmProductVariantName</a>
+            </td>
+            <td>
+                @item.ddlProductTypeCodeDisplay
+            </td>
+            <td>
+                @item.crmIncidentType
+            </td>
+            <td>
+                @item.crmPurposeCode
+            </td>
+            <td>
+                @item.crmPledgeType
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<!--Payment Method-->
+<h2>
+    Payment Method
+</h2>
+<p>
+    <a asp-controller="PaymentMethod" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <caption hidden="hidden">Payment Method</caption>
+    <tr>
+        <th scope="col">
+            <label asp-for="@Model.PaymentMethodVM.FirstOrDefault().crmPaymentMethodName"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="@Model.PaymentMethodVM.FirstOrDefault().ddlWvType"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="@Model.PaymentMethodVM.FirstOrDefault().crmPaymentMethodType"></label>
+        </th>
+    </tr>
+
+    @foreach (var item in Model.PaymentMethodVM)
+    {
+        <tr>
+            <td>
+                <a asp-controller="PaymentMethod" asp-action="Edit" asp-route-id="@item.ddlWvType">@item.crmPaymentMethodName</a>
+            </td>
+            <td>
+                @item.ddlWvType
+            </td>
+            <td>
+                @item.crmPaymentMethodType
+            </td>
+        </tr>
+    }
+</table>
+

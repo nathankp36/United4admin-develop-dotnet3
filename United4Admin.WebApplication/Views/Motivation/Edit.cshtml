@@ -1,0 +1,63 @@
+﻿@model United4Admin.WebApplication.ViewModels.MotivationVM
+
+@{
+    String action = ViewBag.Action;
+}
+
+<form method="post">
+
+    <div class="form-horizontal">
+        <h4>
+            @action Campaign Code
+        </h4>
+
+        <div class="form-group pull-right">
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-controller="SimmaMapping" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+        <hr />
+
+        &nbsp;
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input asp-for="Create" type="hidden" />
+        <div class="form-group">
+            <label asp-for="CampaignCode" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    @if (action == "Edit")
+                    {
+                        <input asp-for="CampaignCode" class="form-control" disabled />
+                    }
+                    @if (action == "Create")
+                    {
+                        <input asp-for="CampaignCode" class="form-control" />
+                    }
+                    <input asp-for="CampaignCode" type="hidden" />
+                    <span asp-validation-for="CampaignCode" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MotivatinId" class="control-label col-md-2"></label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input asp-for="MotivatinId" class="form-control" />
+                    <span asp-validation-for="MotivatinId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</form>
+
+@if (action == "Edit")
+{
+    <div>
+        <div class="control-label col-md-2"></div>
+        <a asp-action="Delete" asp-route-id="@Model.CampaignCode" class="btn btn-danger">Delete</a>
+    </div>
+}

@@ -1,0 +1,28 @@
+﻿
+@model United4Admin.WebApplication.ViewModels.AddOnDonationVM
+<dl class="dl-horizontal">
+    <dt>
+        <label>Name</label>
+    </dt>
+    <dd>
+        @Model.Forename @Model.Surname
+    </dd>
+    <dt>
+        <label asp-for="ChildID"></label>
+    </dt>
+    <dd>
+        @Model.ChildID
+    </dd>
+    <dt>
+        <label>Message</label>
+    </dt>
+    <dd>
+        @Model.Message
+    </dd>
+    <dt>
+        <label>Photo</label>
+    </dt>
+    <dd>
+        @Model.PhotoFileName
+    </dd>
+</dl>

@@ -1,0 +1,151 @@
+﻿
+@model United4Admin.WebApplication.ViewModels.SignUpVM
+<dl class="dl-horizontal">
+    <dt>
+        <label asp-for="Title"></label>
+    </dt>
+    <dd>
+        @Model.Title
+    </dd>
+    <dt>
+        <label asp-for="FirstName"></label>
+    </dt>
+    <dd>
+        @Model.FirstName
+    </dd>
+    <dt>
+        <label asp-for="LastName"></label>
+    </dt>
+    <dd>
+        @Model.LastName
+    </dd>
+    <dt>
+        <label asp-for="BuildingNumberName"></label>
+    </dt>
+    <dd>
+        @Model.BuildingNumberName
+    </dd>
+    <dt>
+        <label asp-for="StreetName"></label>
+    </dt>
+    <dd>
+        @Model.StreetName
+    </dd>
+    <dt>
+        <label asp-for="AddressLine2"></label>
+    </dt>
+    <dd>
+        @Model.AddressLine2
+    </dd>
+    <dt>
+        <label asp-for="AddressLine3"></label>
+    </dt>
+    <dd>
+        @Model.AddressLine3
+    </dd>
+    <dt>
+        <label asp-for="TownCity"></label>
+    </dt>
+    <dd>
+        @Model.TownCity
+    </dd>
+    <dt>
+        <label asp-for="Postcode"></label>
+    </dt>
+    <dd>
+        @Model.Postcode
+    </dd>
+    <dt>
+        <label asp-for="Country"></label>
+    </dt>
+    <dd>
+        @Model.Country
+    </dd>
+    <dt>
+        <label asp-for="PhoneNumber"></label>
+    </dt>
+    <dd>
+        @Model.PhoneNumber
+    </dd>
+    <dt>
+        <label asp-for="EmailAddress"></label>
+    </dt>
+    <dd>
+        @Model.EmailAddress
+    </dd>
+    <dt>
+        <label asp-for="ChosenStatusId"></label>
+    </dt>
+    <dd>
+        @Model.Status.Description
+    </dd>
+    <dt>
+        <label asp-for="SignUpDate"></label>
+    </dt>
+    <dd>
+        @Model.SignUpDate
+    </dd>
+    <dt>
+        <label asp-for="SignUpEventId"></label>
+    </dt>
+    <dd>
+        @Model.SignUpEvent.DisplayName
+    </dd>
+    <dt>
+        <label asp-for="ChoosingPartyId"></label>
+    </dt>
+    <dd>
+        @if (@Model.ChoosingParty != null)
+        {
+         @Model.ChoosingParty.DisplayName 
+            
+        }      
+    </dd>
+    <dt>
+        <label asp-for="RevealEventId"></label>
+    </dt>
+    <dd>
+        @if (@Model.RevealEvent != null)
+        {
+            @Model.RevealEvent.DisplayName            
+        }
+    </dd>
+    <dt>
+        <label asp-for="DataConsent"></label>
+    </dt>
+    <dd>
+        @Model.DataConsent
+    </dd>
+    <dt>
+        <label asp-for="TaxConsent"></label>
+    </dt>
+    <dd>
+        @Model.TaxConsent
+    </dd>
+    <dt>
+        <label asp-for="Post"></label>
+    </dt>
+    <dd>
+        @Model.Post
+    </dd>
+    <dt>
+        <label asp-for="Phone"></label>
+    </dt>
+    <dd>
+        @Model.Email
+    </dd>
+    <dt>
+        <label asp-for="Email"></label>
+    </dt>
+    <dd>
+        @Model.Phone
+    </dd>
+    <dt>
+        <label asp-for="SMS"></label>
+    </dt>
+
+    <dd>
+        @Model.SMS
+    </dd>
+
+</dl>

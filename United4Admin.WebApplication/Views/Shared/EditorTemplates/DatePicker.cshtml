@@ -1,0 +1,38 @@
+﻿@model System.DateTime?
+@{
+    var uid = Guid.NewGuid();
+    if (ViewBag.SignUpDateDisabled == null)
+    {
+
+        @Html.TextBox(
+                       string.Empty,
+                       Model != null ? Model.Value.ToString("dd/MM/yyyy") : string.Empty,
+                               new { @id = uid, @class = "datePicker form-control", style = "display:inline" }
+                   ); ;
+    }
+    else
+    {
+        @Html.TextBox(
+                             string.Empty,
+                             Model != null ? Model.Value.ToString("dd/MM/yyyy") : string.Empty,
+                                     new { @id = uid, @class = "datePicker form-control", disabled = "disabled", style = "display:inline" }
+                         );
+    }
+
+    <script type="text/javascript">
+
+   @{
+
+         <text>
+        @*$("#@uid").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        format: 'dd/mm/yyyy',
+        firstDay: 1*@
+    });
+
+        </text>
+   }
+
+    </script>
+}

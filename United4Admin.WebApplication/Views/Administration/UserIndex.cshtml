@@ -1,0 +1,63 @@
+﻿@model IEnumerable<United4Admin.WebApplication.ViewModels.PermissionsVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>User Management</h2>
+@if (ViewBag.Notification != null)
+{
+    <span id="Notification" class="text-success pull-right">
+        @ViewBag.Notification
+    </span>
+}
+<script>
+    $("#Notification").fadeOut(6000);
+</script>
+<p>
+    <a asp-action="UserCreate">Create New</a>
+</p>
+<table class="table">
+    <caption hidden="hidden">User Permissions</caption>
+    <tr>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().WVEmail"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().Administrator"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().EditDeleteSupporterData"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().CreateEditDeleteEvents"></label>
+        </th>
+        <th scope="col">
+            <label asp-for="FirstOrDefault().DownloadFilesandImages"></label>
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a asp-action="UserEdit" asp-route-id="@item.PermissionsId">@item.WVEmail</a>
+            </td>
+            <td>
+                <input type="checkbox" checked="@item.Administrator" class="check-box" disabled="disabled" />                
+            </td>
+            <td>
+                <input type="checkbox" checked="@item.EditDeleteSupporterData" class="check-box" disabled="disabled" />
+            </td>
+            <td>
+                <input type="checkbox" checked="@item.CreateEditDeleteEvents" class="check-box" disabled="disabled" />
+            </td>
+            <td>
+                <input type="checkbox" checked="@item.DownloadFilesandImages" class="check-box" disabled="disabled" />
+            </td>
+
+        </tr>
+    }
+
+</table>

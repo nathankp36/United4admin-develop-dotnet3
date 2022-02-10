@@ -1,0 +1,17 @@
+﻿@model United4Admin.WebApplication.ViewModels.ImageInfoVM
+@{
+    ViewBag.Title = "Photo";
+}
+
+<h2>Photo</h2>
+<a asp-action="Edit" asp-route-id="@Model.ChosenSignUpId">Return to record</a>
+
+<br />
+@if (string.IsNullOrEmpty(Model.ImageURL))
+{
+    <p>No image is held for this registration</p>
+}
+else
+{
+    <img src="@Model.ImageURL" title="Photo" />
+}

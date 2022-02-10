@@ -1,0 +1,43 @@
+﻿@model United4Admin.WebApplication.ViewModels.ChildInternalDataPagedVM
+@{
+	int startingNumber = (Model.CurrentPage * Model.PageSize) - Model.PageSize + 1;
+	int finishingNumber = Model.CurrentPage * Model.PageSize > Model.TotalNumber ? Model.TotalNumber : Model.CurrentPage * Model.PageSize;
+	int previousPage = Model.CurrentPage - 1;
+	int nextPage = Model.CurrentPage + 1;
+}
+	<div class="navigation">
+		<ul class="pagination">
+			<li class="page-titem disabled PagedList-pageCountAndLocation">
+				<a>
+					Showing children @startingNumber to @finishingNumber of @Model.TotalNumber
+				</a>
+			</li>
+
+			@{
+				if (Model.PreviousPage)
+				{
+					<li class="page-titem PagedList-skipToPrevious">
+						<a asp-action="ChildList" asp-route-page=@previousPage class="page-link">&lt;</a>
+					</li>
+
+				}
+
+				for (int i = 1; i <= Model.TotalPages; i++)
+				{
+					string liClass = "page-titem";
+					if (i == Model.CurrentPage)
+					{ liClass += " active"; }
+					<li class="@liClass">
+						<a class="page-link" href="/UploadChildIds/ChildList?page=@i.ToString()">@i.ToString()</a>
+					</li>
+
+				}
+				if (Model.NextPage)
+				{
+					<li class="page-titem PagedList-skipToNext">
+						<a asp-action="ChildList" asp-route-page=@nextPage class="page-link">&gt;</a>
+					</li>
+				}
+			}
+		</ul>
+	</div>

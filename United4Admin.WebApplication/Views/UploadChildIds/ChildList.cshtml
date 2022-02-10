@@ -1,0 +1,76 @@
+﻿@model United4Admin.WebApplication.ViewModels.ChildInternalDataPagedVM
+@if (ViewBag.Notification != null)
+{
+	<span id="Notification" class="text-success pull-right">
+		@ViewBag.Notification
+	</span>
+}
+<script>
+	$("#Notification").fadeOut(6000);
+</script>
+<partial name="_paging" for="@Model" />
+<table class="table">
+	<caption hidden="hidden">Child Records</caption>
+	<tr>
+		<th scope="col">
+			<label asp-for="@Model.ChildInternalDataModels.FirstOrDefault().ChildId"></label>
+		</th>
+		<th scope="col">
+			<label asp-for="@Model.ChildInternalDataModels.FirstOrDefault().Name"></label>
+		</th>
+		<th>Horizon Data</th>
+		<th>Photo</th>
+		<th>Video</th>
+		<th scope="col">
+			<label>Child Status</label>
+		</th>
+		<th scope="col">
+			<label>Actions</label>
+		</th>
+	</tr>
+
+	@foreach (var child in Model.ChildInternalDataModels)
+	{
+<tr>
+	<td>
+		@child.ChildId
+	</td>
+	<td>
+		@child.Name
+	</td>
+	<td> <input type="checkbox" checked="@child.HasHorizonData" class="check-box" disabled="disabled" /></td>
+	<td> <input type="checkbox" checked="@child.HasCGPhoto" class="check-box" disabled="disabled" /></td>
+	<td> <input type="checkbox" checked="@child.HasCGVideo" class="check-box" disabled="disabled" /></td>	
+	<td>
+		@{
+			string status = "Available";
+			string deleteClass = "btn btn-danger";
+			string warningClass = "btn btn-primary";
+			if (child.SponsoredDateTime != null)
+			{
+				status = "Sponsored "
+					+ child.SponsoredDateTime.GetValueOrDefault().ToShortDateString();
+			}
+			else if (child.SelectedDateTime != null)
+			{
+				TimeSpan minutes = DateTime.UtcNow - child.SelectedDateTime.GetValueOrDefault();
+				int minutesWhole = (int)minutes.TotalMinutes < 0 ? 0 : (int)minutes.TotalMinutes;
+				status = "Selected " + minutesWhole + " mins ago";
+			}
+
+			if (status != "Available")
+			{
+				deleteClass += " disabled";
+				warningClass += " disabled";
+			}
+		}
+		@status
+	</td>
+	<td>
+		<a asp-action="ChangeStatus" asp-route-id=@child.Id class=@warningClass>Edit Status</a>
+		<a asp-action="Delete" asp-route-id=@child.Id class=@deleteClass>Delete</a>
+	</td>
+</tr>
+	}
+</table>
+<partial name="_paging" for="@Model" />
